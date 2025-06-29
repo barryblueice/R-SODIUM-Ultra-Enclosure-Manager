@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "ultra-ssdbox-manager"
+version = "0.1.0"
+description = "GUI Manager for R-SODIUM Ultra SSDBox"
+authors = ["Barryblueice <barryblueice@outlook.com>"]
+license = "MPL-2.0"
+package-mode = false
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyqt6 = "6.4.2"
+pyqt6-tools = "^6.4.2.3.3"
+
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
