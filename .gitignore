@@ -1,2 +1,5 @@
 *.lnk
 *.workspace
+*.jpg
+test.py
+.vscode/

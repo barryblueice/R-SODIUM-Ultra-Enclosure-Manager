@@ -36,6 +36,41 @@ url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
 reference = "mirrors"
 
 [[package]]
+name = "packaging"
+version = "25.0"
+description = "Core utilities for Python packages"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484"},
+    {file = "packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"},
+]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "pyqt-toast-notification"
+version = "1.3.3"
+description = "A fully customizable toast notification library for PyQt and PySide"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pyqt-toast-notification-1.3.3.tar.gz", hash = "sha256:595dbf4b9edee77329e2514255d9a9415ff5d70708c50790db0fee207d323a29"},
+    {file = "pyqt_toast_notification-1.3.3-py3-none-any.whl", hash = "sha256:65ba011f536aa728f0b3ad3a452ab2b578a17f6e0e3468d6f1dc97f5b1cd4d15"},
+]
+
+[package.dependencies]
+QtPy = ">=2.4.1"
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
 name = "pyqt6"
 version = "6.4.2"
 description = "Python bindings for the Qt cross platform application toolkit"
@@ -189,6 +224,52 @@ url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
 reference = "mirrors"
 
 [[package]]
+name = "pyusb"
+version = "1.3.1"
+description = "Easy USB access for Python"
+optional = false
+python-versions = ">=3.9.0"
+files = [
+    {file = "pyusb-1.3.1-py3-none-any.whl", hash = "sha256:bf9b754557af4717fe80c2b07cc2b923a9151f5c08d17bdb5345dac09d6a0430"},
+    {file = "pyusb-1.3.1.tar.gz", hash = "sha256:3af070b607467c1c164f49d5b0caabe8ac78dbed9298d703a8dbf9df4052d17e"},
+]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "pywin32"
+version = "310"
+description = "Python for Window Extensions"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pywin32-310-cp310-cp310-win32.whl", hash = "sha256:6dd97011efc8bf51d6793a82292419eba2c71cf8e7250cfac03bba284454abc1"},
+    {file = "pywin32-310-cp310-cp310-win_amd64.whl", hash = "sha256:c3e78706e4229b915a0821941a84e7ef420bf2b77e08c9dae3c76fd03fd2ae3d"},
+    {file = "pywin32-310-cp310-cp310-win_arm64.whl", hash = "sha256:33babed0cf0c92a6f94cc6cc13546ab24ee13e3e800e61ed87609ab91e4c8213"},
+    {file = "pywin32-310-cp311-cp311-win32.whl", hash = "sha256:1e765f9564e83011a63321bb9d27ec456a0ed90d3732c4b2e312b855365ed8bd"},
+    {file = "pywin32-310-cp311-cp311-win_amd64.whl", hash = "sha256:126298077a9d7c95c53823934f000599f66ec9296b09167810eb24875f32689c"},
+    {file = "pywin32-310-cp311-cp311-win_arm64.whl", hash = "sha256:19ec5fc9b1d51c4350be7bb00760ffce46e6c95eaf2f0b2f1150657b1a43c582"},
+    {file = "pywin32-310-cp312-cp312-win32.whl", hash = "sha256:8a75a5cc3893e83a108c05d82198880704c44bbaee4d06e442e471d3c9ea4f3d"},
+    {file = "pywin32-310-cp312-cp312-win_amd64.whl", hash = "sha256:bf5c397c9a9a19a6f62f3fb821fbf36cac08f03770056711f765ec1503972060"},
+    {file = "pywin32-310-cp312-cp312-win_arm64.whl", hash = "sha256:2349cc906eae872d0663d4d6290d13b90621eaf78964bb1578632ff20e152966"},
+    {file = "pywin32-310-cp313-cp313-win32.whl", hash = "sha256:5d241a659c496ada3253cd01cfaa779b048e90ce4b2b38cd44168ad555ce74ab"},
+    {file = "pywin32-310-cp313-cp313-win_amd64.whl", hash = "sha256:667827eb3a90208ddbdcc9e860c81bde63a135710e21e4cb3348968e4bd5249e"},
+    {file = "pywin32-310-cp313-cp313-win_arm64.whl", hash = "sha256:e308f831de771482b7cf692a1f308f8fca701b2d8f9dde6cc440c7da17e47b33"},
+    {file = "pywin32-310-cp38-cp38-win32.whl", hash = "sha256:0867beb8addefa2e3979d4084352e4ac6e991ca45373390775f7084cc0209b9c"},
+    {file = "pywin32-310-cp38-cp38-win_amd64.whl", hash = "sha256:30f0a9b3138fb5e07eb4973b7077e1883f558e40c578c6925acc7a94c34eaa36"},
+    {file = "pywin32-310-cp39-cp39-win32.whl", hash = "sha256:851c8d927af0d879221e616ae1f66145253537bbdd321a77e8ef701b443a9a1a"},
+    {file = "pywin32-310-cp39-cp39-win_amd64.whl", hash = "sha256:96867217335559ac619f00ad70e513c0fcf84b8a3af9fc2bba3b59b97da70475"},
+]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
 name = "qt6-applications"
 version = "6.4.3.2.3"
 description = "The collection of Qt tools easily installable in Python"
@@ -224,7 +305,261 @@ type = "legacy"
 url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
 reference = "mirrors"
 
+[[package]]
+name = "qtpy"
+version = "2.4.3"
+description = "Provides an abstraction layer on top of the various Qt bindings (PyQt5/6 and PySide2/6)."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "QtPy-2.4.3-py3-none-any.whl", hash = "sha256:72095afe13673e017946cc258b8d5da43314197b741ed2890e563cf384b51aa1"},
+    {file = "qtpy-2.4.3.tar.gz", hash = "sha256:db744f7832e6d3da90568ba6ccbca3ee2b3b4a890c3d6fbbc63142f6e4cdf5bb"},
+]
+
+[package.dependencies]
+packaging = "*"
+
+[package.extras]
+test = ["pytest (>=6,!=7.0.0,!=7.0.1)", "pytest-cov (>=3.0.0)", "pytest-qt"]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "typing-extensions"
+version = "4.14.0"
+description = "Backported and Experimental Type Hints for Python 3.9+"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "typing_extensions-4.14.0-py3-none-any.whl", hash = "sha256:a1514509136dd0b477638fc68d6a91497af5076466ad0fa6c338e44e359944af"},
+    {file = "typing_extensions-4.14.0.tar.gz", hash = "sha256:8676b788e32f02ab42d9e7c61324048ae4c6d844a399eebace3d4979d75ceef4"},
+]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "usb"
+version = "0.0.83.dev0"
+description = "Manage and search browser histories across multiple browsers and browser profiles."
+optional = false
+python-versions = "*"
+files = [
+    {file = "usb-0.0.83.dev0-py3-none-any.whl", hash = "sha256:0afe4a703acab36a7b956e6b1381a9d0ce147b066a6382bd414eb10b9b0e3d3d"},
+    {file = "usb-0.0.83.dev0.tar.gz", hash = "sha256:a459f58fcdf227611f4f08d232735307e9258545f06c84c00bdb4230b6ae2812"},
+]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "windows-toasts"
+version = "1.3.1"
+description = "Python library used to send toast notifications on Windows machines"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "windows_toasts-1.3.1-py3-none-any.whl", hash = "sha256:fb1ab71cc3b7c239508dce0acb651a2a5b7dcaee98921dc4e7355ea0a5355998"},
+    {file = "windows_toasts-1.3.1.tar.gz", hash = "sha256:11fcab5dd2309525271f7f423979e066b9cc04cf434c9b09a341c97490fa239b"},
+]
+
+[package.dependencies]
+winrt-runtime = ">=3.0,<4.0"
+"winrt-Windows.Data.Xml.Dom" = ">=3.0,<4.0"
+"winrt-Windows.Foundation" = ">=3.0,<4.0"
+"winrt-Windows.Foundation.Collections" = ">=3.0,<4.0"
+"winrt-Windows.UI.Notifications" = ">=3.0,<4.0"
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "winrt-runtime"
+version = "3.2.1"
+description = "Python projection of Windows Runtime (WinRT) APIs"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "winrt_runtime-3.2.1-cp310-cp310-win32.whl", hash = "sha256:25a2d1e2b45423742319f7e10fa8ca2e7063f01284b6e85e99d805c4b50bbfb3"},
+    {file = "winrt_runtime-3.2.1-cp310-cp310-win_amd64.whl", hash = "sha256:dc81d5fb736bf1ddecf743928622253dce4d0aac9a57faad776d7a3834e13257"},
+    {file = "winrt_runtime-3.2.1-cp310-cp310-win_arm64.whl", hash = "sha256:363f584b1e9fcb601e3e178636d8877e6f0537ac3c96ce4a96f06066f8ff0eae"},
+    {file = "winrt_runtime-3.2.1-cp311-cp311-win32.whl", hash = "sha256:9e9b64f1ba631cc4b9fe60b8ff16fef3f32c7ce2fcc84735a63129ff8b15c022"},
+    {file = "winrt_runtime-3.2.1-cp311-cp311-win_amd64.whl", hash = "sha256:c0a9046ae416808420a358c51705af8ae100acd40bc578be57ddfdd51cbb0f9c"},
+    {file = "winrt_runtime-3.2.1-cp311-cp311-win_arm64.whl", hash = "sha256:e94f3cb40ea2d723c44c82c16d715c03c6b3bd977d135b49535fdd5415fd9130"},
+    {file = "winrt_runtime-3.2.1-cp312-cp312-win32.whl", hash = "sha256:762b3d972a2f7037f7db3acbaf379dd6d8f6cda505f71f66c6b425d1a1eae2f1"},
+    {file = "winrt_runtime-3.2.1-cp312-cp312-win_amd64.whl", hash = "sha256:06510db215d4f0dc45c00fbb1251c6544e91742a0ad928011db33b30677e1576"},
+    {file = "winrt_runtime-3.2.1-cp312-cp312-win_arm64.whl", hash = "sha256:14562c29a087ccad38e379e585fef333e5c94166c807bdde67b508a6261aa195"},
+    {file = "winrt_runtime-3.2.1-cp313-cp313-win32.whl", hash = "sha256:44e2733bc709b76c554aee6c7fe079443b8306b2e661e82eecfebe8b9d71e4d1"},
+    {file = "winrt_runtime-3.2.1-cp313-cp313-win_amd64.whl", hash = "sha256:3c1fdcaeedeb2920dc3b9039db64089a6093cad2be56a3e64acc938849245a6d"},
+    {file = "winrt_runtime-3.2.1-cp313-cp313-win_arm64.whl", hash = "sha256:28f3dab083412625ff4d2b46e81246932e6bebddf67bea7f05e01712f54e6159"},
+    {file = "winrt_runtime-3.2.1-cp39-cp39-win32.whl", hash = "sha256:07c0cb4a53a4448c2cb7597b62ae8c94343c289eeebd8f83f946eb2c817bde01"},
+    {file = "winrt_runtime-3.2.1-cp39-cp39-win_amd64.whl", hash = "sha256:1856325ca3354b45e0789cf279be9a882134085d34214946db76110d98391efa"},
+    {file = "winrt_runtime-3.2.1-cp39-cp39-win_arm64.whl", hash = "sha256:cf237858de1d62e4c9b132c66b52028a7a3e8534e8ab90b0e29a68f24f7be39d"},
+    {file = "winrt_runtime-3.2.1.tar.gz", hash = "sha256:c8dca19e12b234ae6c3dadf1a4d0761b51e708457492c13beb666556958801ea"},
+]
+
+[package.dependencies]
+typing_extensions = ">=4.12.2"
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "winrt-windows-data-xml-dom"
+version = "3.2.1"
+description = "Python projection of Windows Runtime (WinRT) APIs"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp310-cp310-win32.whl", hash = "sha256:ac2c823a328f6a532b45067d3ced3490aebc14afaac9fd9d04a1dad7cb8be74b"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp310-cp310-win_amd64.whl", hash = "sha256:bf9125e5c84e595d7dafb36c20ed49170c14b96c0c544ba9acba1f1b5a347a2a"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp310-cp310-win_arm64.whl", hash = "sha256:0617d77e9be9adb13a8620394dac0ae03714a2cadc5ed7728f4761ec1148fd77"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp311-cp311-win32.whl", hash = "sha256:50e09bff8652adacb91115d5c6ff6372f4c9c9d277d63b5e4d3958b8c34420cf"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp311-cp311-win_amd64.whl", hash = "sha256:a507631812307ad65d8928a382ac2b9f21b81627db11410570e6686951e0dc55"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp311-cp311-win_arm64.whl", hash = "sha256:0d8ed4093792d207e8961bd50665374e15b49d8f7a274369257e4ad93e0731a5"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp312-cp312-win32.whl", hash = "sha256:be2e9edbc4702c0cfd88ae48260b55bb30ee3e15c86c6c4240aaf4f2c54ff380"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp312-cp312-win_amd64.whl", hash = "sha256:b531a61a30106ecc7c7b3ad8f1b22e98d8366bbc2c60c47f5053fe62479109d6"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp312-cp312-win_arm64.whl", hash = "sha256:0b3eed7fd618d0bfbafea730bbcb24cb6a94dcd742b2b9c7d5d66319494e5f35"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp313-cp313-win32.whl", hash = "sha256:7091ee8d472a18336887edee6bf90d9261783f82b1a0fec00ba0e6a1a00623eb"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp313-cp313-win_amd64.whl", hash = "sha256:b51b67c0bf88995827151d4e8ff0edcb2120406d4aedcb9574854b904b92a11f"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp313-cp313-win_arm64.whl", hash = "sha256:e4ed27ec593b96bcd13fffd9fd0bf74744b0dacc249faa5af0ef1d903ed59c1b"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp39-cp39-win32.whl", hash = "sha256:08d7e240c55c3b81e1bc04a45d7450f89196825de64637a3df2e2d3c4c13a124"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp39-cp39-win_amd64.whl", hash = "sha256:9eb51bf2df8e32b65a2c3ca3d8d6e9f88805d05b710964a2302d14f80628244d"},
+    {file = "winrt_windows_data_xml_dom-3.2.1-cp39-cp39-win_arm64.whl", hash = "sha256:4ed0fb1bcdcb919d93c2691363d4995838c6bd52a1d324f3fb4b9844cc3ac322"},
+    {file = "winrt_windows_data_xml_dom-3.2.1.tar.gz", hash = "sha256:db81f5956bf63ce8c9d8bfb6d0794ab2849f26e62a6256b833af8de3d6451399"},
+]
+
+[package.dependencies]
+winrt-runtime = ">=3.2.1.0,<3.3.0.0"
+
+[package.extras]
+all = ["winrt-Windows.Foundation.Collections[all] (>=3.2.1.0,<3.3.0.0)", "winrt-Windows.Foundation[all] (>=3.2.1.0,<3.3.0.0)", "winrt-Windows.Storage.Streams[all] (>=3.2.1.0,<3.3.0.0)", "winrt-Windows.Storage[all] (>=3.2.1.0,<3.3.0.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "winrt-windows-foundation"
+version = "3.2.1"
+description = "Python projection of Windows Runtime (WinRT) APIs"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "winrt_windows_foundation-3.2.1-cp310-cp310-win32.whl", hash = "sha256:677e98165dcbbf7a2367f905bc61090ef2c568b6e465f87cf7276df4734f3b0b"},
+    {file = "winrt_windows_foundation-3.2.1-cp310-cp310-win_amd64.whl", hash = "sha256:a8f27b4f0fdb73ccc4a3e24bc8010a6607b2bdd722fa799eafce7daa87d19d39"},
+    {file = "winrt_windows_foundation-3.2.1-cp310-cp310-win_arm64.whl", hash = "sha256:d900c6165fab4ea589811efa2feed27b532e1b6f505f63bf63e2052b8cb6bdc4"},
+    {file = "winrt_windows_foundation-3.2.1-cp311-cp311-win32.whl", hash = "sha256:d1b5970241ccd61428f7330d099be75f4f52f25e510d82c84dbbdaadd625e437"},
+    {file = "winrt_windows_foundation-3.2.1-cp311-cp311-win_amd64.whl", hash = "sha256:f3762be2f6e0f2aedf83a0742fd727290b397ffe3463d963d29211e4ebb53a7e"},
+    {file = "winrt_windows_foundation-3.2.1-cp311-cp311-win_arm64.whl", hash = "sha256:806c77818217b3476e6c617293b3d5b0ff8a9901549dc3417586f6799938d671"},
+    {file = "winrt_windows_foundation-3.2.1-cp312-cp312-win32.whl", hash = "sha256:867642ccf629611733db482c4288e17b7919f743a5873450efb6d69ae09fdc2b"},
+    {file = "winrt_windows_foundation-3.2.1-cp312-cp312-win_amd64.whl", hash = "sha256:45550c5b6c2125cde495c409633e6b1ea5aa1677724e3b95eb8140bfccbe30c9"},
+    {file = "winrt_windows_foundation-3.2.1-cp312-cp312-win_arm64.whl", hash = "sha256:94f4661d71cb35ebc52be7af112f2eeabdfa02cb05e0243bf9d6bd2cafaa6f37"},
+    {file = "winrt_windows_foundation-3.2.1-cp313-cp313-win32.whl", hash = "sha256:3998dc58ed50ecbdbabace1cdef3a12920b725e32a5806d648ad3f4829d5ba46"},
+    {file = "winrt_windows_foundation-3.2.1-cp313-cp313-win_amd64.whl", hash = "sha256:6e98617c1e46665c7a56ce3f5d28e252798416d1ebfee3201267a644a4e3c479"},
+    {file = "winrt_windows_foundation-3.2.1-cp313-cp313-win_arm64.whl", hash = "sha256:2a8c1204db5c352f6a563130a5a41d25b887aff7897bb677d4ff0b660315aad4"},
+    {file = "winrt_windows_foundation-3.2.1-cp39-cp39-win32.whl", hash = "sha256:14d5191725301498e4feb744d91f5b46ce317bf3d28370efda407d5c87f4423b"},
+    {file = "winrt_windows_foundation-3.2.1-cp39-cp39-win_amd64.whl", hash = "sha256:de5e4f61d253a91ba05019dbf4338c43f962bdad935721ced5e7997933994af5"},
+    {file = "winrt_windows_foundation-3.2.1-cp39-cp39-win_arm64.whl", hash = "sha256:ebbf6e8168398c9ed0c72c8bdde95a406b9fbb9a23e3705d4f0fe28e5a209705"},
+    {file = "winrt_windows_foundation-3.2.1.tar.gz", hash = "sha256:ad2f1fcaa6c34672df45527d7c533731fdf65b67c4638c2b4aca949f6eec0656"},
+]
+
+[package.dependencies]
+winrt-runtime = ">=3.2.1.0,<3.3.0.0"
+
+[package.extras]
+all = ["winrt-Windows.Foundation.Collections[all] (>=3.2.1.0,<3.3.0.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "winrt-windows-foundation-collections"
+version = "3.2.1"
+description = "Python projection of Windows Runtime (WinRT) APIs"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "winrt_windows_foundation_collections-3.2.1-cp310-cp310-win32.whl", hash = "sha256:46948484addfc4db981dab35688d4457533ceb54d4954922af41503fddaa8389"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp310-cp310-win_amd64.whl", hash = "sha256:899eaa3a93c35bfb1857d649e8dd60c38b978dda7cedd9725fcdbcebba156fd6"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp310-cp310-win_arm64.whl", hash = "sha256:c36eb49ad1eba1b32134df768bb47af13cabb9b59f974a3cea37843e2d80e0e6"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp311-cp311-win32.whl", hash = "sha256:9b272d9936e7db4840881c5dcf921eb26789ae4ef23fb6ec15e13e19a16254e7"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp311-cp311-win_amd64.whl", hash = "sha256:c646a5d442dd6540ade50890081ca118b41f073356e19032d0a5d7d0d38fbc89"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp311-cp311-win_arm64.whl", hash = "sha256:2c4630027c93cdd518b0cf4cc726b8fbdbc3388e36d02aa1de190a0fc18ca523"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp312-cp312-win32.whl", hash = "sha256:15704eef3125788f846f269cf54a3d89656fa09a1dc8428b70871f717d595ad6"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp312-cp312-win_amd64.whl", hash = "sha256:550dfb8c82fe74d9e0728a2a16a9175cc9e34ca2b8ef758d69b2a398894b698b"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp312-cp312-win_arm64.whl", hash = "sha256:810ad4bd11ab4a74fdbcd3ed33b597ef7c0b03af73fc9d7986c22bcf3bd24f84"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp313-cp313-win32.whl", hash = "sha256:4267a711b63476d36d39227883aeb3fb19ac92b88a9fc9973e66fbce1fd4aed9"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp313-cp313-win_amd64.whl", hash = "sha256:5e12a6e75036ee90484c33e204b85fb6785fcc9e7c8066ad65097301f48cdd10"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp313-cp313-win_arm64.whl", hash = "sha256:34b556255562f1b36d07fba933c2bcd9f0db167fa96727a6cbb4717b152ad7a2"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp39-cp39-win32.whl", hash = "sha256:20610f098b84c87765018cbc71471092197881f3b92e5d06158fad3bfcea2563"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp39-cp39-win_amd64.whl", hash = "sha256:e9739775320ac4c0238e1775d94a54e886d621f9995977e65d4feb8b3778c111"},
+    {file = "winrt_windows_foundation_collections-3.2.1-cp39-cp39-win_arm64.whl", hash = "sha256:e4c6bddb1359d5014ceb45fe2ecd838d4afeb1184f2ea202c2d21037af0d08a3"},
+    {file = "winrt_windows_foundation_collections-3.2.1.tar.gz", hash = "sha256:0eff1ad0d8d763ad17e9e7bbd0c26a62b27215016393c05b09b046d6503ae6d5"},
+]
+
+[package.dependencies]
+winrt-runtime = ">=3.2.1.0,<3.3.0.0"
+
+[package.extras]
+all = ["winrt-Windows.Foundation[all] (>=3.2.1.0,<3.3.0.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
+[[package]]
+name = "winrt-windows-ui-notifications"
+version = "3.2.1"
+description = "Python projection of Windows Runtime (WinRT) APIs"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "winrt_windows_ui_notifications-3.2.1-cp310-cp310-win32.whl", hash = "sha256:ad09c01d72298954c9401f085f1519045a07d140103bd93a041d6a9664c7dbd1"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp310-cp310-win_amd64.whl", hash = "sha256:9e3a4ae4669387e675df4ffc21591fea9c0d8af4d175679583b9dceec49ef468"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp310-cp310-win_arm64.whl", hash = "sha256:716341570e4e425ebdb4ff4cd41ca11f8bf305c780f1cb95b4d7453a3fe730dc"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp311-cp311-win32.whl", hash = "sha256:ad2bbdde0529766b2c4866204c0a7dedea0666fab8ec4c971824f2c1f40e90c6"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp311-cp311-win_amd64.whl", hash = "sha256:61ee8904ca17681c3e96fcf40bc115b8e1efe72c460e6df34b47eb254343018a"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp311-cp311-win_arm64.whl", hash = "sha256:db2dbf9dc6b836575f94a1fe165ac184d841ba5aeaed6870a3fe68367341cef3"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp312-cp312-win32.whl", hash = "sha256:041643bd83762900cdd5704a6e08f886879f78952cfc9834b184ee81df924d72"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp312-cp312-win_amd64.whl", hash = "sha256:7f2378246f6db14d16bf93830f1bcd8efa1c5b4c740878ad86d2f482fb08feab"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp312-cp312-win_arm64.whl", hash = "sha256:e7eda8cb11a1e82d2da87b2b98cbf73ce153417cb93debe95c739534c6dbde7c"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp313-cp313-win32.whl", hash = "sha256:cff07f0193365c38a07cf87030c609b57b7ca7fcbf8740c720425edfa6205fa8"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp313-cp313-win_amd64.whl", hash = "sha256:9f8d109c8c6634dac258a32d7f3d939aa50605bd7a6a43137a3ffc2ab4a8f667"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp313-cp313-win_arm64.whl", hash = "sha256:aec78f6a632e2ae57a55b7aee60f8df848ccffd1c4d14c3c9fbfaa6bb564e1a2"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp39-cp39-win32.whl", hash = "sha256:8c3e5c9e1a55056a2c3b4d22610082e6aa07d5b3a8df8ae797ab8404237ab191"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp39-cp39-win_amd64.whl", hash = "sha256:09e6b69f960d94755fdc7cc58496b314ca07fe04d8a49128d49446ce7af48934"},
+    {file = "winrt_windows_ui_notifications-3.2.1-cp39-cp39-win_arm64.whl", hash = "sha256:91be1386d1b9a38fad5cc0d6edb13c977bb9127dd880c1cce386f0e2a4b8b763"},
+    {file = "winrt_windows_ui_notifications-3.2.1.tar.gz", hash = "sha256:eb29bf1c3306f3ceabd71d092b5505d5fe73fbc0660347dcc63ebc4204d34d21"},
+]
+
+[package.dependencies]
+winrt-runtime = ">=3.2.1.0,<3.3.0.0"
+
+[package.extras]
+all = ["winrt-Windows.ApplicationModel[all] (>=3.2.1.0,<3.3.0.0)", "winrt-Windows.Data.Xml.Dom[all] (>=3.2.1.0,<3.3.0.0)", "winrt-Windows.Foundation.Collections[all] (>=3.2.1.0,<3.3.0.0)", "winrt-Windows.Foundation[all] (>=3.2.1.0,<3.3.0.0)", "winrt-Windows.System[all] (>=3.2.1.0,<3.3.0.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+reference = "mirrors"
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "f274433bbfd895b5067e0e9935f752d78b64dc73f5b6334e25e6e49d6209ec04"
+content-hash = "1c50a7c9c3c5eb4f0b9e6266252040e4a4e32540dfd4d503d1c09e9b0a6a25be"
