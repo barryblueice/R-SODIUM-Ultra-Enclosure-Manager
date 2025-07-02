@@ -1,6 +1,7 @@
 # usb_monitor.py
 import usb.core
-from PyQt6.QtCore import QThread, pyqtSignal
+from PySide6.QtCore import QThread
+from PySide6.QtCore import Signal as pyqtSignal
 
 
 class DeviceMonitorThread(QThread):

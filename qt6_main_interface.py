@@ -1,11 +1,14 @@
-from PyQt6 import QtWidgets
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QSystemTrayIcon, QMenu
+from PySide6 import QtWidgets
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QSystemTrayIcon, QMenu, QGroupBox
 from pyqttoast import Toast, ToastIcon
 
-from Ui_ultra_ssdbox_manager import Ui_Dialog
+from Ui_ultra_ssdbox_manager import Ui_main_interface
+from progressbar import ProgressWindow
 import usm_rc
+
 import usb_monitor
+import groupboxcontroller
 
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -13,16 +16,36 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_Dialog()
+        self.ui = Ui_main_interface()
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.ui_state(False)
+
         self.monitor_thread = usb_monitor.DeviceMonitorThread()
         self.monitor_thread.device_event.connect(self.on_device_status_changed)
         self.monitor_thread.start()
 
+        self.groupbox_list = []
+        self.groupbox_list.append(self.ui.overview)
+        self.groupbox_list.append(self.ui.sataconfig)
+        self.groupbox_list.append(self.ui.boxmode)
+        self.groupbox_list.append(self.ui.about)
+        self.controller = groupboxcontroller.GroupVisibilityController()
+        self.controller.switch_signal.connect(self.show_only_one)
+        self.controller.set_all_widgets(self.groupbox_list)
+
+        self.ui.sataconfig.setVisible(False)
+        self.ui.boxmode.setVisible(False)
+        self.ui.about.setVisible(False)
+
         self.tray_icon = QSystemTrayIcon(QIcon("icon.ico"), self)
         self.tray_icon.setToolTip("Ultra SSDBox Manager")
+
+        self.ui.overview_button.clicked.connect(lambda: self.controller.activate_only(self.ui.overview))
+        self.ui.SATA_Interface_button.clicked.connect(lambda:self.controller.activate_only(self.ui.sataconfig))
+        self.ui.boxmode_button.clicked.connect(lambda: self.controller.activate_only(self.ui.boxmode))
+        self.ui.about_button.clicked.connect(lambda: self.controller.activate_only(self.ui.about))
+        self.ui.boxmode_execute.clicked.connect(self.on_boxmode_execute_clicked)
 
         tray_menu = QMenu()
         show_action = tray_menu.addAction("Show")
@@ -42,18 +65,25 @@ class MainWindow(QtWidgets.QMainWindow):
             self.activateWindow()
 
     def ui_state(self,status: bool):
-        self.ui.raidconfig.setEnabled(status)
-
+        self.ui.boxmode.setEnabled(status)
+        self.ui.sataconfig.setEnabled(status)
         self.ui.SATA_Interface_button.setEnabled(status)
         self.ui.boxmode_button.setEnabled(status)
-        # self.ui.raidconfig.setVisible(False)
+
+    def handle_visibility_change(self, widget: QGroupBox, visible):
+        widget.setVisible(visible)
+
+    def show_only_one(self, target_widget):
+        gb: QGroupBox
+        for gb in self.groupbox_list:
+            gb.setVisible(gb == target_widget)
 
     def on_device_status_changed(self, status: bool):
         toast = Toast(self)
         toast.setAlwaysOnMainScreen(True)
         self.ui_state(status=status)
         if status:
-            toast.setText('A new Ultra-SSDBox device has been plugged in!')
+            toast.setText('A new Ultra-SSDBox device has detected!')
             toast.setIcon(ToastIcon.SUCCESS)
         else:
             toast.setText('The Ultra-SSDBox device has been removed!')
@@ -74,3 +104,7 @@ class MainWindow(QtWidgets.QMainWindow):
         toast.setShowDurationBar(False)
         toast.setDuration(3000)
         toast.show()
+
+    def on_boxmode_execute_clicked(self):
+        self.progress_window = ProgressWindow(main_window=self)
+        self.progress_window.progressbar_start()
