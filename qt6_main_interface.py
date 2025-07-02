@@ -3,7 +3,7 @@ from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QSystemTrayIcon, QMenu, QGroupBox
 from pyqttoast import Toast, ToastIcon
 
-from Ui_ultra_ssdbox_manager import Ui_main_interface
+from Ui_ultra_enclosure_manager import Ui_main_interface
 from progressbar import ProgressWindow
 import usm_rc
 
