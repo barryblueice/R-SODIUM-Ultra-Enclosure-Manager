@@ -83,10 +83,10 @@ class MainWindow(QtWidgets.QMainWindow):
         toast.setAlwaysOnMainScreen(True)
         self.ui_state(status=status)
         if status:
-            toast.setText('A new Ultra-SSDBox device has detected!')
+            toast.setText('A new Ultra SSD Enclosure device has detected!')
             toast.setIcon(ToastIcon.SUCCESS)
         else:
-            toast.setText('The Ultra-SSDBox device has been removed!')
+            toast.setText('The Ultra SSD Enclosure device has been removed!')
             toast.setIcon(ToastIcon.INFORMATION)
         toast.setIconColor(None)
         toast.setShowIcon(True)
