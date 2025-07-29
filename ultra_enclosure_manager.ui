@@ -113,7 +113,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Box Mode</string>
+    <string>Enclosure Config</string>
    </property>
   </widget>
   <widget class="QPushButton" name="about_button">
@@ -336,25 +336,25 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-286</y>
        <width>297</width>
-       <height>1000</height>
+       <height>635</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
        <width>100</width>
-       <height>1000</height>
+       <height>635</height>
       </size>
      </property>
      <property name="autoFillBackground">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <widget class="QCheckBox" name="sataonly">
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>130</y>
+        <y>120</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -365,14 +365,14 @@
        </font>
       </property>
       <property name="text">
-       <string>SATA Only</string>
+       <string>ASM1352R Only</string>
       </property>
      </widget>
      <widget class="QPushButton" name="boxmode_execute">
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>280</y>
+        <y>580</y>
         <width>91</width>
         <height>41</height>
        </rect>
@@ -385,7 +385,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>70</y>
+        <y>60</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -396,14 +396,14 @@
        </font>
       </property>
       <property name="text">
-       <string>Combine Mode (NVMe + SATA)</string>
+       <string>Combine Mode</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>190</y>
+        <y>480</y>
         <width>171</width>
         <height>31</height>
        </rect>
@@ -424,7 +424,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>160</y>
+        <y>150</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -442,7 +442,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>100</y>
+        <y>90</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -453,14 +453,14 @@
        </font>
       </property>
       <property name="text">
-       <string>NVMe Only</string>
+       <string>ASM2362 Only</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>30</y>
+        <y>20</y>
         <width>171</width>
         <height>31</height>
        </rect>
@@ -481,7 +481,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>230</y>
+        <y>520</y>
         <width>261</width>
         <height>21</height>
        </rect>
@@ -493,6 +493,175 @@
       </property>
       <property name="text">
        <string>Keep mode config for next power up.</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>220</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Disk Onpower Config</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>260</y>
+        <width>131</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Self-Powered</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <widget class="QCheckBox" name="checkBox">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>40</y>
+         <width>83</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>NVMe</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_2">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>70</y>
+         <width>83</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SATA1</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_3">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>100</y>
+         <width>83</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SATA2</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>159</x>
+        <y>260</y>
+        <width>131</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Ext-Powered</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <widget class="QCheckBox" name="checkBox_6">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>70</y>
+         <width>83</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SATA1</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_4">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>100</y>
+         <width>83</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SATA2</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_5">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>40</y>
+         <width>83</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>NVMe</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>270</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(170, 170, 170);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>450</y>
+        <width>270</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(170, 170, 170);</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -747,16 +916,112 @@ for better stability and performance.</string>
    <property name="title">
     <string/>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>50</y>
+      <width>161</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="usm.qrc">:/img/logo.svg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>40</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="usm.qrc">:/img/icon-non-background.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>170</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Open-sourced On Github:</string>
+    </property>
+    <property name="openExternalLinks">
+     <bool>false</bool>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::TextInteractionFlag::NoTextInteraction</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_18">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>291</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>https://github.com/barryblueice/
+R-SODIUM-Ultra-Enclosure-Manager</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextEditable|Qt::TextInteractionFlag::TextEditorInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_19">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>291</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hope you enjoy my work! :)</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
-  <zorder>about</zorder>
   <zorder>overview_button</zorder>
   <zorder>label_2</zorder>
   <zorder>SATA_Interface_button</zorder>
   <zorder>boxmode_button</zorder>
   <zorder>about_button</zorder>
   <zorder>sataconfig</zorder>
-  <zorder>boxmode</zorder>
   <zorder>overview</zorder>
+  <zorder>about</zorder>
+  <zorder>boxmode</zorder>
  </widget>
  <resources>
   <include location="usm.qrc"/>
