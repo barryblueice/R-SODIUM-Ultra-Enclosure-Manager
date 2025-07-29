@@ -6,7 +6,7 @@
 ## **简介：**
 基于Python+Pyside6的R-SODIUM Ultra Enclosure GUI控制端。
 
-<img width="518" height="419" alt="image" src="https://github.com/user-attachments/assets/cbfcdd19-89da-4342-b14c-a581ac8c6cbf" />
+<img width="524" height="427" alt="image" src="https://github.com/user-attachments/assets/810b8b25-8f1a-4ac6-bd2f-558bbaec0b9b" />
 
 ## **协议：**
 `R-SODIUM Ultra Enclosure Manager`遵循[Mozilla Public License 2.0](https://github.com/barryblueice/R-SODIUM-Ultra-Enclosure-Manager?tab=MPL-2.0-1-ov-file)协议开源。如需自定义源码并二次分发，请明确标明原出处。
