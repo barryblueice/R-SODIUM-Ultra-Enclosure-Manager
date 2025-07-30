@@ -39,13 +39,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.about.setVisible(False)
 
         self.tray_icon = QSystemTrayIcon(QIcon("icon.ico"), self)
-        self.tray_icon.setToolTip("Ultra SSDBox Manager")
+        self.tray_icon.setToolTip("R-SODIUM Ultra Enclosure Manager")
 
         self.ui.overview_button.clicked.connect(lambda: self.controller.activate_only(self.ui.overview))
         self.ui.SATA_Interface_button.clicked.connect(lambda:self.controller.activate_only(self.ui.sataconfig))
         self.ui.boxmode_button.clicked.connect(lambda: self.controller.activate_only(self.ui.boxmode))
         self.ui.about_button.clicked.connect(lambda: self.controller.activate_only(self.ui.about))
         self.ui.boxmode_execute.clicked.connect(self.on_boxmode_execute_clicked)
+        self.ui.sata_execute.clicked.connect(self.on_sata_excute_clicked)
 
         tray_menu = QMenu()
         show_action = tray_menu.addAction("Show")
@@ -106,5 +107,9 @@ class MainWindow(QtWidgets.QMainWindow):
         toast.show()
 
     def on_boxmode_execute_clicked(self):
+        self.progress_window = ProgressWindow(main_window=self)
+        self.progress_window.progressbar_start()
+
+    def on_sata_excute_clicked(self):
         self.progress_window = ProgressWindow(main_window=self)
         self.progress_window.progressbar_start()
