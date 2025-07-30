@@ -160,45 +160,6 @@
    <property name="checkable">
     <bool>false</bool>
    </property>
-   <widget class="QCheckBox" name="JBOD">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>136</y>
-      <width>111</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>SPAN / JBOD</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="R1">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>106</y>
-      <width>80</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RAID 1</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="R0">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>76</y>
-      <width>80</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RAID 0</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -219,25 +180,6 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="PM">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>166</y>
-      <width>111</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="acceptDrops">
-     <bool>false</bool>
-    </property>
-    <property name="text">
-     <string>Normal</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="sata_execute">
@@ -301,6 +243,89 @@
      <string>second/s.</string>
     </property>
    </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>70</y>
+      <width>251</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <widget class="QCheckBox" name="PM">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>100</y>
+       <width>111</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Normal</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="JBOD">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>70</y>
+       <width>111</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>SPAN / JBOD</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="R0">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>10</y>
+       <width>80</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RAID 0</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="R1">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>40</y>
+       <width>80</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>RAID 1</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="boxmode">
    <property name="geometry">
@@ -336,7 +361,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>-286</y>
+       <y>0</y>
        <width>297</width>
        <height>635</height>
       </rect>
@@ -350,24 +375,6 @@
      <property name="autoFillBackground">
       <bool>true</bool>
      </property>
-     <widget class="QCheckBox" name="sataonly">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>120</y>
-        <width>231</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>ASM1352R Only</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="boxmode_execute">
       <property name="geometry">
        <rect>
@@ -379,24 +386,6 @@
       </property>
       <property name="text">
        <string>Execute</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="combinemode">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>60</y>
-        <width>231</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Combine Mode</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_6">
@@ -418,42 +407,6 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="hubonly">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>150</y>
-        <width>231</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Hub Only (No disk connected)</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="nvmeonly">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>90</y>
-        <width>231</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>ASM2362 Only</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
@@ -543,6 +496,9 @@
        <property name="text">
         <string>NVMe</string>
        </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_2">
        <property name="geometry">
@@ -556,6 +512,9 @@
        <property name="text">
         <string>SATA1</string>
        </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_3">
        <property name="geometry">
@@ -568,6 +527,9 @@
        </property>
        <property name="text">
         <string>SATA2</string>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
        </property>
       </widget>
      </widget>
@@ -598,6 +560,9 @@
        <property name="text">
         <string>SATA1</string>
        </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_4">
        <property name="geometry">
@@ -611,6 +576,9 @@
        <property name="text">
         <string>SATA2</string>
        </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_5">
        <property name="geometry">
@@ -623,6 +591,9 @@
        </property>
        <property name="text">
         <string>NVMe</string>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
        </property>
       </widget>
      </widget>
@@ -663,6 +634,100 @@
       <property name="text">
        <string/>
       </property>
+     </widget>
+     <widget class="QWidget" name="widget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>271</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <widget class="QCheckBox" name="nvmeonly">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>231</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>ASM2362 Only</string>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="combinemode">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>231</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Combine Mode</string>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="hubonly">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>100</y>
+         <width>231</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Hub Only (No disk connected)</string>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="sataonly">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>231</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>ASM1352R Only</string>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -736,10 +801,10 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 0, 0);</string>
+     <string notr="true">color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string>False</string>
+     <string>None</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -760,10 +825,10 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 170, 0);</string>
+     <string notr="true">color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string>True</string>
+     <string>None</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -802,10 +867,10 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 170, 0);</string>
+     <string notr="true">color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string>True</string>
+     <string>None</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -844,10 +909,10 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 0, 0);</string>
+     <string notr="true">color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string>False</string>
+     <string>None</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1018,9 +1083,9 @@ R-SODIUM-Ultra-Enclosure-Manager</string>
   <zorder>SATA_Interface_button</zorder>
   <zorder>boxmode_button</zorder>
   <zorder>about_button</zorder>
+  <zorder>about</zorder>
   <zorder>sataconfig</zorder>
   <zorder>overview</zorder>
-  <zorder>about</zorder>
   <zorder>boxmode</zorder>
  </widget>
  <resources>
