@@ -798,6 +798,7 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -822,6 +823,7 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -864,6 +866,7 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -906,6 +909,7 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -1085,8 +1089,8 @@ R-SODIUM-Ultra-Enclosure-Manager</string>
   <zorder>about_button</zorder>
   <zorder>about</zorder>
   <zorder>sataconfig</zorder>
-  <zorder>overview</zorder>
   <zorder>boxmode</zorder>
+  <zorder>overview</zorder>
  </widget>
  <resources>
   <include location="usm.qrc"/>
