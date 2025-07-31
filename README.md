@@ -1,5 +1,5 @@
-![R-SODIUM-Ultra-Enclosure-Manager](https://socialify.git.ci/barryblueice/R-SODIUM-Ultra-Enclosure-Manager/image?font=JetBrains+Mono&logo=https%3A%2F%2Fdl.barryblueice.cn%2Fdownload%2Frsodium-ultra-enclosure-manager-icon.png&name=1&pattern=Signal&theme=Auto)
 <p align="center">
+  <img width="1280" height="640" alt="image" src="https://github.com/user-attachments/assets/19ffe58d-2d4c-4a41-be81-c2a7d45c923f" />
   <img alt="GitHub License" src="https://img.shields.io/github/license/barryblueice/R-SODIUM-Ultra-Enclosure-Manager">
 </p>
 
