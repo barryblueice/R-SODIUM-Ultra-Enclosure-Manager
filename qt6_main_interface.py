@@ -7,7 +7,7 @@ from Ui_ultra_enclosure_manager import Ui_main_interface
 from progressbar import ProgressWindow
 import usm_rc
 
-import usb_monitor
+import usb_module
 import groupboxcontroller
 
 import warnings
@@ -21,7 +21,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setFixedSize(self.width(), self.height())
         self.ui_state(False)
 
-        self.monitor_thread = usb_monitor.DeviceMonitorThread()
+        self.monitor_thread = usb_module.USBCommunicatorThread()
         self.monitor_thread.device_event.connect(self.on_device_status_changed)
         self.monitor_thread.start()
 
