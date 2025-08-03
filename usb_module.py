@@ -60,7 +60,7 @@ class USBCommunicatorThread(QThread):
         device.write(packet)
 
         try:
-            resp = device.read(REPORT_SIZE, timeout_ms=1000)
+            resp = device.read(REPORT_SIZE, timeout_ms=100)
         except Exception as e:
             return None
 
@@ -160,4 +160,7 @@ class USBCommunicatorThread(QThread):
             except:
                 pass
 
-            self.msleep(1000)
+            self.msleep(100)
+
+    def stop(self):
+        self.running = False

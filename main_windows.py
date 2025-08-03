@@ -1,7 +1,7 @@
 from PySide6 import QtWidgets
 from PySide6.QtGui import QIcon
 from Ui_ultra_enclosure_manager import Ui_main_interface
-from PySide6.QtWidgets import QSystemTrayIcon, QGroupBox
+from PySide6.QtWidgets import QSystemTrayIcon, QGroupBox, QMenu
 from pyqttoast import Toast, ToastIcon
 
 import usb_module
@@ -37,6 +37,39 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.tray_icon = QSystemTrayIcon(QIcon("icon.ico"), self)
         self.tray_icon.setToolTip("R-SODIUM Ultra Enclosure Manager")
+
+        tray_menu = QMenu()
+        show_action = tray_menu.addAction("Show")
+        quit_action = tray_menu.addAction("Exit")
+
+        show_action.triggered.connect(self.show)
+        quit_action.triggered.connect(QtWidgets.QApplication.quit)
+
+        self.tray_icon.setContextMenu(tray_menu)
+        self.tray_icon.show()
+
+        self.tray_icon.activated.connect(self.on_tray_icon_activated)
+
+    def on_tray_icon_activated(self, reason):
+        if reason == QSystemTrayIcon.ActivationReason.Trigger:
+            self.show()
+            self.activateWindow()
+
+    def closeEvent(self, event):
+        toast = Toast(self)
+        toast.setAlwaysOnMainScreen(True)
+        toast.setText('The program has minimized to tray.')
+        toast.setIcon(ToastIcon.INFORMATION)
+        toast.setIconColor(None)
+        toast.setShowIcon(True)
+        toast.setShowDurationBar(False)
+        toast.setDuration(3000)
+        toast.show()
+
+        if self.monitor_thread.isRunning():
+            self.monitor_thread.stop()
+            self.monitor_thread.wait()
+            event.accept()
 
     def ui_state(self,status: bool):
         self.ui.boxmode.setEnabled(status)
