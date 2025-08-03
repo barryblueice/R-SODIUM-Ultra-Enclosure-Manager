@@ -2,7 +2,6 @@ import sys
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QProgressBar
 from PySide6.QtCore import QTimer, Qt, QThread, Signal
 
-
 # 子线程类，用于模拟耗时任务
 class Worker(QThread):
     progress = Signal(int)

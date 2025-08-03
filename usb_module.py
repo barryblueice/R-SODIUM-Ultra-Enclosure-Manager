@@ -151,12 +151,11 @@ class USBCommunicatorThread(QThread):
                     else:
                         self.device_present = False
                         self.device_event.emit(False)
-                        USBCommunicatorThread.dev.close()
 
                 elif not is_hid_device and self.device_present:
                     self.device_present = False
                     self.device_event.emit(False)
-                    USBCommunicatorThread.dev.close()
+                USBCommunicatorThread.dev.close()
             except:
                 pass
 
