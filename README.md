@@ -10,9 +10,14 @@
 
 ## **协议：**
 `R-SODIUM Ultra Enclosure Manager`遵循[Mozilla Public License 2.0](https://github.com/barryblueice/R-SODIUM-Ultra-Enclosure-Manager?tab=MPL-2.0-1-ov-file)协议开源。如需自定义源码并二次分发，请明确标明原出处。
+
 ## **硬件开源地址：**
 
 [USB 10Gbps多协议三盘盒 VL822+ESP32](https://oshwhub.com/barryblueice/usb-multi-protocol-three-disk-bo)
+
+## **适用硬件设备：**
+ - R-SODIUM Ultra Enclosure 1.0（第一代R-SODIUM Ultra Enclosure硬盘盒）。[固件下载地址←](https://github.com/barryblueice/R-SODIUM-Ultra-Enclosure-1.0-Firmware)
+   > 警告：仅适用第一代ESP32版本，第一代8051版本不再提供任何技术支持。
 
 ## **工作原理：**
 
