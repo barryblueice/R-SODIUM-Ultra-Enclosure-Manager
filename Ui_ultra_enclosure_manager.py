@@ -106,6 +106,7 @@ class Ui_main_interface(object):
         self.powertime.setGeometry(QRect(150, 356, 61, 31))
         self.powertime.setMinimum(0)
         self.powertime.setMaximum(10)
+        self.powertime.setValue(0)
         self.label_20 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_20.setObjectName(u"label_20")
         self.label_20.setGeometry(QRect(20, 200, 271, 71))
