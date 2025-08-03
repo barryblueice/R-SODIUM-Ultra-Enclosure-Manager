@@ -67,7 +67,7 @@ class USBCommunicatorThread(QThread):
         if not resp:
             return None
         
-
+    @staticmethod
     def hid_comm(
             device, 
             target: int, 
@@ -106,7 +106,7 @@ class USBCommunicatorThread(QThread):
         if USBCommunicatorThread.verify_response(resp):
             resp_target = resp[0]
             resp_cmd = resp[1:32].rstrip(b"\x00")
-            print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
+            # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
             return resp_target, resp_cmd
         else:
             return None
@@ -151,11 +151,12 @@ class USBCommunicatorThread(QThread):
                     else:
                         self.device_present = False
                         self.device_event.emit(False)
+                        USBCommunicatorThread.dev.close()
 
                 elif not is_hid_device and self.device_present:
                     self.device_present = False
                     self.device_event.emit(False)
-                USBCommunicatorThread.dev.close()
+                    USBCommunicatorThread.dev.close()
             except:
                 pass
 
