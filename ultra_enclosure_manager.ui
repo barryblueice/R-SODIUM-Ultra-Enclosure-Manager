@@ -474,15 +474,15 @@ may not support this function!</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>-286</y>
+       <y>-151</y>
        <width>297</width>
-       <height>635</height>
+       <height>500</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
        <width>100</width>
-       <height>635</height>
+       <height>500</height>
       </size>
      </property>
      <property name="autoFillBackground">
@@ -492,34 +492,13 @@ may not support this function!</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>580</y>
+        <y>440</y>
         <width>91</width>
         <height>41</height>
        </rect>
       </property>
       <property name="text">
        <string>Execute</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>480</y>
-        <width>171</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Other Configuration</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
@@ -541,24 +520,6 @@ may not support this function!</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="storageconfig">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>520</y>
-        <width>261</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Keep mode config for next power up.</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_12">
@@ -733,25 +694,6 @@ may not support this function!</string>
        <rect>
         <x>20</x>
         <y>200</y>
-        <width>270</width>
-        <height>2</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(170, 170, 170);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_14">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>450</y>
         <width>270</width>
         <height>2</height>
        </rect>
@@ -1273,9 +1215,9 @@ usb-multi-protocol-three-disk-bo</string>
   <zorder>boxmode_button</zorder>
   <zorder>about_button</zorder>
   <zorder>sataconfig</zorder>
-  <zorder>boxmode</zorder>
   <zorder>about</zorder>
   <zorder>overview</zorder>
+  <zorder>boxmode</zorder>
  </widget>
  <resources>
   <include location="usm.qrc"/>
