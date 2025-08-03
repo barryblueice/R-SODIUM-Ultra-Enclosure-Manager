@@ -316,7 +316,7 @@ class Ui_main_interface(object):
         self.label_11.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.ext_pwr_tips = QLabel(self.overview)
         self.ext_pwr_tips.setObjectName(u"ext_pwr_tips")
-        self.ext_pwr_tips.setGeometry(QRect(30, 240, 261, 41))
+        self.ext_pwr_tips.setGeometry(QRect(0, 240, 311, 41))
         self.ext_pwr_tips.setFont(font6)
         self.ext_pwr_tips.setStyleSheet(u"color: rgb(255, 0, 0);")
         self.ext_pwr_tips.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -368,8 +368,8 @@ class Ui_main_interface(object):
         self.about_button.raise_()
         self.sataconfig.raise_()
         self.boxmode.raise_()
-        self.overview.raise_()
         self.about.raise_()
+        self.overview.raise_()
 
         self.retranslateUi(main_interface)
 

@@ -8,7 +8,6 @@ if __name__ == "__main__":
     window = main_windows.MainWindow()
 
     controller = MainInterfaceController(window)
-
     controller.ui_initialized()
 
     window.show()

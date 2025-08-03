@@ -61,7 +61,10 @@ class MainWindow(QtWidgets.QMainWindow):
         toast.show()
 
         self.ui.nvme_status.setText("True")
-        self.ui.nvme_status.setStyleSheet("color: #00FF00;")
+        self.ui.nvme_status.setStyleSheet("color: #06B025;")
+
+        self.ui.sata1_status.setText("False")
+        self.ui.sata1_status.setStyleSheet("color: #FF0000;")
 
     def show_only_one(self, target_widget):
         gb: QGroupBox

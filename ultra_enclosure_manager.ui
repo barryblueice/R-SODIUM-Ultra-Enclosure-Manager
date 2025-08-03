@@ -1083,9 +1083,9 @@ may not support this function!</string>
    <widget class="QLabel" name="ext_pwr_tips">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>0</x>
       <y>240</y>
-      <width>261</width>
+      <width>311</width>
       <height>41</height>
      </rect>
     </property>
@@ -1274,8 +1274,8 @@ usb-multi-protocol-three-disk-bo</string>
   <zorder>about_button</zorder>
   <zorder>sataconfig</zorder>
   <zorder>boxmode</zorder>
-  <zorder>overview</zorder>
   <zorder>about</zorder>
+  <zorder>overview</zorder>
  </widget>
  <resources>
   <include location="usm.qrc"/>
