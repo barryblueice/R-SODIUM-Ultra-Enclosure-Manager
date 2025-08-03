@@ -60,6 +60,9 @@ class MainWindow(QtWidgets.QMainWindow):
         toast.setDuration(3000)
         toast.show()
 
+        self.ui.nvme_status.setText("True")
+        self.ui.nvme_status.setStyleSheet("color: #00FF00;")
+
     def show_only_one(self, target_widget):
         gb: QGroupBox
         for gb in self.groupbox_list:

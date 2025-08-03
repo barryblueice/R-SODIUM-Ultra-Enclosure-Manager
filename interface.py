@@ -25,19 +25,6 @@ class MainInterfaceController:
         ui.boxmode_execute.clicked.connect(lambda: on_boxmode_execute_clicked(self.main_window))
         ui.sata_execute.clicked.connect(self.on_sata_excute_clicked)
 
-    # def on_boxmode_execute_clicked(self):
-    #     for i in [
-    #         self.main_window.ui.combinemode,
-    #         self.main_window.ui.hubonly,
-    #         self.main_window.ui.sataonly,
-    #         self.main_window.ui.nvmeonly
-    #     ]:
-    #         if i.isChecked():
-    #             print(i.text())
-    #             break
-    #     self.progress_window = ProgressWindow(main_window=self.main_window)
-    #     self.progress_window.progressbar_start()
-
     def on_sata_excute_clicked(self):
         self.progress_window = ProgressWindow(main_window=self.main_window)
         self.progress_window.progressbar_start()

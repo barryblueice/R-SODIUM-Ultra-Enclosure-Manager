@@ -474,7 +474,7 @@ may not support this function!</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-286</y>
        <width>297</width>
        <height>635</height>
       </rect>
@@ -1169,14 +1169,17 @@ for better stability and performance.</string>
    <widget class="QLabel" name="label_17">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>170</y>
-      <width>151</width>
-      <height>16</height>
+      <x>10</x>
+      <y>150</y>
+      <width>291</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Open-sourced On Github:</string>
+     <string>Software Open-sourced On Github:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
     <property name="openExternalLinks">
      <bool>false</bool>
@@ -1189,7 +1192,7 @@ for better stability and performance.</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>190</y>
+      <y>170</y>
       <width>291</width>
       <height>41</height>
      </rect>
@@ -1209,7 +1212,7 @@ R-SODIUM-Ultra-Enclosure-Manager</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
+      <y>310</y>
       <width>291</width>
       <height>20</height>
      </rect>
@@ -1221,16 +1224,58 @@ R-SODIUM-Ultra-Enclosure-Manager</string>
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>250</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>https://oshwhub.com/barryblueice/
+usb-multi-protocol-three-disk-bo</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextEditable|Qt::TextInteractionFlag::TextEditorInteraction|Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_24">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>291</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hardware Open-sourced On OSHWHUB:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="openExternalLinks">
+     <bool>false</bool>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::TextInteractionFlag::NoTextInteraction</set>
+    </property>
+   </widget>
   </widget>
   <zorder>overview_button</zorder>
   <zorder>label_2</zorder>
   <zorder>SATA_Interface_button</zorder>
   <zorder>boxmode_button</zorder>
   <zorder>about_button</zorder>
-  <zorder>overview</zorder>
   <zorder>sataconfig</zorder>
-  <zorder>about</zorder>
   <zorder>boxmode</zorder>
+  <zorder>overview</zorder>
+  <zorder>about</zorder>
  </widget>
  <resources>
   <include location="usm.qrc"/>
