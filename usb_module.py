@@ -25,16 +25,12 @@ class USBCommunicatorThread(QThread):
     def calc_hmac(data: bytes) -> bytes:
         return hmac.new(HMAC_KEY, data, hashlib.sha256).digest()
 
-    def create_packet(target: int, nvs_status: int, cmd) -> bytes:
-        if isinstance(cmd, int):
-            cmd = bytes([cmd])
-        elif isinstance(cmd, str):
-            cmd = cmd.encode()
-        elif not isinstance(cmd, bytes):
-            raise TypeError
+    def create_packet(target: int, nvs_status: int, cmd: int, ext_status: int) -> bytes:
 
-        cmd_padded = cmd.ljust(30, b"\x00")
-        data = bytes([target]) + cmd_padded + bytes([nvs_status])
+        # cmd_padded = cmd.ljust(30, b"\x00")
+        # data = bytes([target]) + cmd_padded + bytes([nvs_status])
+        last_padded = bytes([nvs_status]).ljust(30, b"\x00")
+        data = bytes([target, cmd, nvs_status, ext_status]) + last_padded
         mac = USBCommunicatorThread.calc_hmac(data)
         return bytes([REPORT_ID]) + data + mac
 
@@ -72,7 +68,8 @@ class USBCommunicatorThread(QThread):
             device, 
             target: int, 
             nvs_status: int, 
-            cmd: bytes = b''
+            cmd: int,
+            ext_status = 0x02
             ):
         """HID通信函数
 
@@ -81,17 +78,10 @@ class USBCommunicatorThread(QThread):
             target -- 通信命令（0xFE，握手命令）/目标GPIO（0x01-0x2C）
             nvs_status -- 是否存储设置到NVS（0x01启用存储）
             cmd -- GPIO操作命令（0x00低电平、0x01高电平、0x02查询nvs存储状态、0x03查询GPIO电平状态）
+            ext_status -- 在外置供电插入时，对应的设备状态。（默认为0x02，即全模式通用）
         """
 
-        if isinstance(cmd, int):
-            cmd = bytes([cmd])
-        elif isinstance(cmd, str):
-            cmd = cmd.encode()
-        elif not isinstance(cmd, bytes):
-            raise TypeError()
-
-        packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd)
-        # print (list(packet))
+        packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd, ext_status)
         device.write(packet)
 
         try:
@@ -107,7 +97,7 @@ class USBCommunicatorThread(QThread):
             resp_target = resp[0]
             resp_cmd = resp[1:32].rstrip(b"\x00")
             # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
-            return resp_target, resp_cmd
+            return resp_cmd
         else:
             return None
         
@@ -117,7 +107,7 @@ class USBCommunicatorThread(QThread):
         packet = USBCommunicatorThread.create_packet(
             target=0xFE, 
             nvs_status=0x00, 
-            cmd=0x00)
+            cmd=0x00,)
         device.write(packet)
         try:
             resp = bytes(device.read(REPORT_SIZE, timeout_ms=1000))

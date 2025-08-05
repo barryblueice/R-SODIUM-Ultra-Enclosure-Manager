@@ -7,6 +7,8 @@ from pyqttoast import Toast, ToastIcon
 import usb_module
 import groupboxcontroller
 
+device = usb_module.USBCommunicatorThread.dev
+
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -81,6 +83,7 @@ class MainWindow(QtWidgets.QMainWindow):
         toast = Toast(self)
         toast.setAlwaysOnMainScreen(True)
         self.ui_state(status=status)
+        self.overview_status_changed(status=status)
         if status:
             toast.setText('A new Ultra SSD Enclosure device has detected!')
             toast.setIcon(ToastIcon.SUCCESS)
@@ -93,13 +96,86 @@ class MainWindow(QtWidgets.QMainWindow):
         toast.setDuration(3000)
         toast.show()
 
-        self.ui.nvme_status.setText("True")
-        self.ui.nvme_status.setStyleSheet("color: #06B025;")
-
-        self.ui.sata1_status.setText("False")
-        self.ui.sata1_status.setStyleSheet("color: #FF0000;")
-
     def show_only_one(self, target_widget):
         gb: QGroupBox
         for gb in self.groupbox_list:
             gb.setVisible(gb == target_widget)
+
+    def overview_status_changed(self, status: bool):
+            
+        if status:
+
+            resp = usb_module.USBCommunicatorThread.hid_comm(
+                device, 
+                target=0x22, 
+                nvs_status=0x00, 
+                cmd=0x03)
+            
+            if resp == b'HIGH':
+
+                self.ui.sata1_status.setText("True")
+                self.ui.sata1_status.setStyleSheet("color: #06B025;")
+
+            else:
+
+                self.ui.sata1_status.setText("False")
+                self.ui.sata1_status.setStyleSheet("color: #FF0000;")
+
+            resp = usb_module.USBCommunicatorThread.hid_comm(
+                device, 
+                target=0x26, 
+                nvs_status=0x00, 
+                cmd=0x03)
+            
+            if resp == b'HIGH':
+
+                self.ui.sata2_status.setText("True")
+                self.ui.sata2_status.setStyleSheet("color: #06B025;")
+
+            else:
+
+                self.ui.sata2_status.setText("False")
+                self.ui.sata2_status.setStyleSheet("color: #FF0000;")
+
+            resp = usb_module.USBCommunicatorThread.hid_comm(
+                device, 
+                target=0x23, 
+                nvs_status=0x00, 
+                cmd=0x03)
+            
+            if resp == b'HIGH':
+
+                self.ui.nvme_status.setText("True")
+                self.ui.nvme_status.setStyleSheet("color: #06B025;")
+
+            else:
+
+                self.ui.nvme_status.setText("False")
+                self.ui.nvme_status.setStyleSheet("color: #FF0000;")
+
+            resp = usb_module.USBCommunicatorThread.hid_comm(
+                device, 
+                target=0x01, 
+                nvs_status=0x00, 
+                cmd=0x03)
+            
+            if resp == b'HIGH':
+
+                self.ui.ext_power_status.setText("True")
+                self.ui.ext_power_status.setStyleSheet("color: #06B025;")
+
+            else:
+
+                self.ui.ext_power_status.setText("False")
+                self.ui.ext_power_status.setStyleSheet("color: #FF0000;")
+
+        else:
+
+            self.ui.nvme_status.setText("None")
+            self.ui.nvme_status.setStyleSheet("color: #000000;")
+            self.ui.sata1_status.setText("None")
+            self.ui.sata1_status.setStyleSheet("color: #000000;")
+            self.ui.sata2_status.setText("None")
+            self.ui.sata2_status.setStyleSheet("color: #000000;")
+            self.ui.ext_power_status.setText("None")
+            self.ui.ext_power_status.setStyleSheet("color: #000000;")

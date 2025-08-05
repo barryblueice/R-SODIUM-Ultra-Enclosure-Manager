@@ -24,7 +24,25 @@ class MainInterfaceController:
 
         ui.boxmode_execute.clicked.connect(lambda: on_boxmode_execute_clicked(self.main_window))
         ui.sata_execute.clicked.connect(self.on_sata_excute_clicked)
+        
+        ui.combinemode.clicked.connect(self.enclosure_mode_group_changed)
+        ui.nvmeonly.clicked.connect(self.enclosure_mode_group_changed)
+        ui.sataonly.clicked.connect(self.enclosure_mode_group_changed)
+        ui.hubonly.clicked.connect(self.enclosure_mode_group_changed)
+
+        ui.combinemode.mode_id = 0
+        ui.nvmeonly.mode_id = 1
+        ui.sataonly.mode_id = 2
+        ui.hubonly.mode_id = 3
 
     def on_sata_excute_clicked(self):
         self.progress_window = ProgressWindow(main_window=self.main_window)
         self.progress_window.progressbar_start()
+
+    def enclosure_mode_group_changed(self):
+        if self.main_window.ui.combinemode.isChecked():
+            self.main_window.ui.selfpowered_groupbox.setEnabled(True)
+            self.main_window.ui.extpowered_groupbox.setEnabled(True)
+        else:
+            self.main_window.ui.selfpowered_groupbox.setEnabled(False)
+            self.main_window.ui.extpowered_groupbox.setEnabled(False)
