@@ -73,7 +73,6 @@ var
   UninstallKey: string;
   InstallPath: string;
 begin
-  // 修改为你的AppId
   UninstallKey := 'Software\Microsoft\Windows\CurrentVersion\Uninstall\{1394752C-1881-448A-BBFF-3ACC6D38B4C8}_is1';
   Result := RegQueryStringValue(HKLM, UninstallKey, 'UninstallString', InstallPath) or
             RegQueryStringValue(HKCU, UninstallKey, 'UninstallString', InstallPath);
@@ -98,6 +97,16 @@ begin
   Result := '';
 end;
 
+procedure KillProcess(const FileName: string);
+var
+  ResultCode: Integer;
+begin
+  if Exec(ExpandConstant('{cmd}'), '/C taskkill /IM "' + FileName + '" /F', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+    MsgBox('Detected a running instance of the application. It has been terminated automatically.', mbInformation, MB_OK)
+  else
+    MsgBox('No running instance of the application was found.', mbInformation, MB_OK);
+end;
+
 procedure UninstallPreviousVersion();
 var
   UninstallCmd: string;
@@ -106,13 +115,13 @@ begin
   UninstallCmd := GetUninstallCommand();
   if UninstallCmd <> '' then
   begin
-    if MsgBox('检测到已安装旧版本，是否卸载后继续安装？', mbConfirmation, MB_YESNO) = IDYES then
+    if MsgBox('A previous version of this application was found. Do you want to uninstall it before proceeding?', mbConfirmation, MB_YESNO) = IDYES then
     begin
       ShellExec('', UninstallCmd, '/SILENT', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
     end
     else
     begin
-      MsgBox('安装已取消。', mbInformation, MB_OK);
+      MsgBox('Installation aborted.', mbInformation, MB_OK);
       Abort;
     end;
   end;
@@ -120,6 +129,7 @@ end;
 
 procedure InitializeWizard();
 begin
+  KillProcess('{#MyAppExeName}');
   if IsAppInstalled() then
   begin
     UninstallPreviousVersion();
