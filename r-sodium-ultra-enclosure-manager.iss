@@ -65,3 +65,62 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
+[Code]
+function IsAppInstalled(): Boolean;
+var
+  UninstallKey: string;
+  InstallPath: string;
+begin
+  // 修改为你的AppId
+  UninstallKey := 'Software\Microsoft\Windows\CurrentVersion\Uninstall\{1394752C-1881-448A-BBFF-3ACC6D38B4C8}_is1';
+  Result := RegQueryStringValue(HKLM, UninstallKey, 'UninstallString', InstallPath) or
+            RegQueryStringValue(HKCU, UninstallKey, 'UninstallString', InstallPath);
+end;
+
+function GetUninstallCommand(): String;
+var
+  UninstallKey: string;
+  UninstallString: string;
+begin
+  UninstallKey := 'Software\Microsoft\Windows\CurrentVersion\Uninstall\{1394752C-1881-448A-BBFF-3ACC6D38B4C8}_is1';
+  if RegQueryStringValue(HKLM, UninstallKey, 'UninstallString', UninstallString) then
+  begin
+    Result := UninstallString;
+    Exit;
+  end;
+  if RegQueryStringValue(HKCU, UninstallKey, 'UninstallString', UninstallString) then
+  begin
+    Result := UninstallString;
+    Exit;
+  end;
+  Result := '';
+end;
+
+procedure UninstallPreviousVersion();
+var
+  UninstallCmd: string;
+  ResultCode: Integer;
+begin
+  UninstallCmd := GetUninstallCommand();
+  if UninstallCmd <> '' then
+  begin
+    if MsgBox('检测到已安装旧版本，是否卸载后继续安装？', mbConfirmation, MB_YESNO) = IDYES then
+    begin
+      ShellExec('', UninstallCmd, '/SILENT', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
+    end
+    else
+    begin
+      MsgBox('安装已取消。', mbInformation, MB_OK);
+      Abort;
+    end;
+  end;
+end;
+
+procedure InitializeWizard();
+begin
+  if IsAppInstalled() then
+  begin
+    UninstallPreviousVersion();
+  end;
+end;
+
