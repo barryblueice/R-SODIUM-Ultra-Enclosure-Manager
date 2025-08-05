@@ -17,7 +17,8 @@
 
 ## **适用硬件设备：**
  - R-SODIUM Ultra Enclosure 1.0（第一代R-SODIUM Ultra Enclosure硬盘盒）。[固件下载地址←](https://github.com/barryblueice/R-SODIUM-Ultra-Enclosure-1.0-Firmware)
-   > 警告：仅适用第一代ESP32版本，第一代8051版本不再提供任何技术支持。
+> [!CAUTION]
+仅适用第一代ESP32版本，第一代8051版本不再提供任何技术支持。
 
 ## **工作原理：**
 
