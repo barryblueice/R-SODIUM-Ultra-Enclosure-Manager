@@ -38,7 +38,9 @@ DisableProgramGroupPage=yes
 OutputDir=D:\Downloads
 OutputBaseFilename=R-SODIUM-Ultra-Enclosure-Manager-Setup-{#MyAppVersion}
 SetupIconFile=D:\Documents\test\Ultra-SSDBox-manager\icon.ico
+Compression=lzma2/ultra64
 SolidCompression=yes
+CompressionThreads=auto
 WizardStyle=modern
 
 [Languages]
