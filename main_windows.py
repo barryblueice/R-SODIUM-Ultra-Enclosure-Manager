@@ -232,6 +232,12 @@ class MainWindow(QtWidgets.QMainWindow):
                     else:
                         i.setChecked(False)
 
+                resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device, 
+                    cmd=0x09)
+                
+                self.ui.powertime.setValue(int.from_bytes(resp, byteorder='big'))
+
             except:
                 
                 pass

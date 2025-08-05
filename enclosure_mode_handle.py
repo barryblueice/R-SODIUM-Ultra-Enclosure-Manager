@@ -2,6 +2,8 @@ from progressbar import ProgressWindow
 from main_windows import MainWindow
 from usb_module import USBCommunicatorThread
 
+USB_COMM = USBCommunicatorThread()
+
 device = USBCommunicatorThread.dev
 
 gpio_mode_id_list = {
@@ -27,8 +29,6 @@ def on_boxmode_execute_clicked(main_window: MainWindow):
             n = i.mode_id
             # print (n)
             break
-
-    USB_COMM = USBCommunicatorThread()
 
     USB_COMM.hid_comm(device, target=n, cmd=0x05)
 
@@ -66,7 +66,7 @@ def on_boxmode_execute_clicked(main_window: MainWindow):
 
             if "12" in m_not_checked and "13" in m_not_checked:
                 USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
-                
+
             if "22" in m_not_checked and "23" in m_not_checked:
                 USB_COMM.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x00)
 
