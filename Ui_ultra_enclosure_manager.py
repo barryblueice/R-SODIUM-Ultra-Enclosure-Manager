@@ -81,7 +81,7 @@ class Ui_main_interface(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, -121, 297, 470))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 297, 470))
         self.scrollAreaWidgetContents_2.setMinimumSize(QSize(0, 470))
         self.label_4 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_4.setObjectName(u"label_4")
@@ -355,8 +355,8 @@ class Ui_main_interface(object):
         self.about_button.raise_()
         self.about.raise_()
         self.overview.raise_()
-        self.sataconfig.raise_()
         self.boxmode.raise_()
+        self.sataconfig.raise_()
 
         self.retranslateUi(main_interface)
 
@@ -378,7 +378,7 @@ class Ui_main_interface(object):
         self.label_20.setText(QCoreApplication.translate("main_interface", u"Warning: ASM1352R with\n"
 "unsupported firmware\n"
 "may not support this function!", None))
-        self.PM.setText(QCoreApplication.translate("main_interface", u" Normal", None))
+        self.PM.setText(QCoreApplication.translate("main_interface", u" Normal (PM)", None))
         self.JBOD.setText(QCoreApplication.translate("main_interface", u" SPAN / JBOD", None))
         self.R0.setText(QCoreApplication.translate("main_interface", u" RAID 0", None))
         self.R1.setText(QCoreApplication.translate("main_interface", u" RAID 1", None))

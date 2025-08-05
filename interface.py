@@ -18,6 +18,7 @@ class MainInterfaceController:
         controller = self.main_window.controller
 
         ui.overview_button.clicked.connect(lambda: controller.activate_only(ui.overview))
+        ui.overview_button.clicked.connect(lambda: MainWindow.overview_status_changed(self.main_window,True))
         ui.SATA_Interface_button.clicked.connect(lambda: controller.activate_only(ui.sataconfig))
         ui.boxmode_button.clicked.connect(lambda: controller.activate_only(ui.boxmode))
         ui.about_button.clicked.connect(lambda: controller.activate_only(ui.about))
@@ -34,6 +35,11 @@ class MainInterfaceController:
         ui.nvmeonly.mode_id = 1
         ui.sataonly.mode_id = 2
         ui.hubonly.mode_id = 3
+
+        ui.R0.mode_id = 30
+        ui.R1.mode_id = 31
+        ui.JBOD.mode_id = 32
+        ui.PM.mode_id = 33
 
         ui.nvme_self_power_checkbox.mode_id = "11"
         ui.sata1_self_power_checkbox.mode_id = "12"

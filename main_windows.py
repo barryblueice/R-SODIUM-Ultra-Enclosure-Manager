@@ -93,6 +93,7 @@ class MainWindow(QtWidgets.QMainWindow):
         toast.setAlwaysOnMainScreen(True)
         self.ui_state(status=status)
         self.overview_status_changed(status=status)
+        self.connect_event_handle(status=status)
         if status:
             toast.setText('A new Ultra SSD Enclosure device has detected!')
             toast.setIcon(ToastIcon.SUCCESS)
@@ -177,6 +178,26 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.ui.ext_power_status.setText("False")
                     self.ui.ext_power_status.setStyleSheet("color: #FF0000;")
 
+            except:
+                
+                pass
+
+        else:
+
+            self.ui.nvme_status.setText("None")
+            self.ui.nvme_status.setStyleSheet("color: #000000;")
+            self.ui.sata1_status.setText("None")
+            self.ui.sata1_status.setStyleSheet("color: #000000;")
+            self.ui.sata2_status.setText("None")
+            self.ui.sata2_status.setStyleSheet("color: #000000;")
+            self.ui.ext_power_status.setText("None")
+            self.ui.ext_power_status.setStyleSheet("color: #000000;")
+
+    def connect_event_handle(self, status: bool):
+        try:
+
+            if status:
+
                 resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 
                     target=0x00, 
@@ -238,17 +259,26 @@ class MainWindow(QtWidgets.QMainWindow):
                 
                 self.ui.powertime.setValue(int.from_bytes(resp, byteorder='big'))
 
-            except:
-                
-                pass
+                resp1 = usb_module.USBCommunicatorThread.hid_comm(device,target=0x24,cmd=0x02)
+                resp2 = usb_module.USBCommunicatorThread.hid_comm(device,target=0x25,cmd=0x02)
 
-        else:
+                for i in [
+                    self.ui.R0,
+                    self.ui.R1,
+                    self.ui.PM,
+                    self.ui.JBOD
+                ]:
+                    i.setChecked(False)
 
-            self.ui.nvme_status.setText("None")
-            self.ui.nvme_status.setStyleSheet("color: #000000;")
-            self.ui.sata1_status.setText("None")
-            self.ui.sata1_status.setStyleSheet("color: #000000;")
-            self.ui.sata2_status.setText("None")
-            self.ui.sata2_status.setStyleSheet("color: #000000;")
-            self.ui.ext_power_status.setText("None")
-            self.ui.ext_power_status.setStyleSheet("color: #000000;")
+                if resp1 == b"LOW" and resp2 == b"LOW":
+                    self.ui.JBOD.setChecked(True)
+                elif resp1 == b"HIGH" and resp2 == b"LOW":
+                    self.ui.R1.setChecked(True)
+                elif resp1 == b"LOW" and resp2 == b"HIGH":
+                    self.ui.R0.setChecked(True)
+                else:
+                    self.ui.PM.setChecked(True)
+
+        except:
+
+            pass
