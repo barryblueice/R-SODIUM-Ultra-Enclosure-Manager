@@ -4,7 +4,6 @@
 # from pyqttoast import Toast, ToastIcon
 
 # from Ui_ultra_enclosure_manager import Ui_main_interface
-from progressbar import ProgressWindow
 from main_windows import MainWindow
 
 from enclosure_mode_handle import on_boxmode_execute_clicked
@@ -35,9 +34,13 @@ class MainInterfaceController:
         ui.sataonly.mode_id = 2
         ui.hubonly.mode_id = 3
 
-    def on_sata_excute_clicked(self):
-        self.progress_window = ProgressWindow(main_window=self.main_window)
-        self.progress_window.progressbar_start()
+        ui.nvme_self_power_checkbox.mode_id = "11"
+        ui.sata1_self_power_checkbox.mode_id = "12"
+        ui.sata2_self_power_checkbox.mode_id = "13"
+
+        ui.nvme_ext_power_checkbox.mode_id = "21"
+        ui.sata1_ext_power_checkbox.mode_id = "22"
+        ui.sata2_ext_power_checkbox.mode_id = "23"
 
     def enclosure_mode_group_changed(self):
         if self.main_window.ui.combinemode.isChecked():

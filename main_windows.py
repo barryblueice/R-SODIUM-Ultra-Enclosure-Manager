@@ -9,6 +9,15 @@ import groupboxcontroller
 
 device = usb_module.USBCommunicatorThread.dev
 
+gpio_mode_id_list = {
+    "11": 0x23,
+    "12": 0x26,
+    "13": 0x22,
+    "21": 0x23,
+    "22": 0x26,
+    "23": 0x22,
+}
+
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -104,70 +113,128 @@ class MainWindow(QtWidgets.QMainWindow):
     def overview_status_changed(self, status: bool):
             
         if status:
+                
+            try:
 
-            resp = usb_module.USBCommunicatorThread.hid_comm(
-                device, 
-                target=0x22, 
-                nvs_status=0x00, 
-                cmd=0x03)
-            
-            if resp == b'HIGH':
+                resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device, 
+                    target=0x22,
+                    cmd=0x03)
+                
+                if resp == b'HIGH':
 
-                self.ui.sata1_status.setText("True")
-                self.ui.sata1_status.setStyleSheet("color: #06B025;")
+                    self.ui.sata1_status.setText("True")
+                    self.ui.sata1_status.setStyleSheet("color: #06B025;")
 
-            else:
+                else:
 
-                self.ui.sata1_status.setText("False")
-                self.ui.sata1_status.setStyleSheet("color: #FF0000;")
+                    self.ui.sata1_status.setText("False")
+                    self.ui.sata1_status.setStyleSheet("color: #FF0000;")
 
-            resp = usb_module.USBCommunicatorThread.hid_comm(
-                device, 
-                target=0x26, 
-                nvs_status=0x00, 
-                cmd=0x03)
-            
-            if resp == b'HIGH':
+                resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device, 
+                    target=0x26,
+                    cmd=0x03)
+                
+                if resp == b'HIGH':
 
-                self.ui.sata2_status.setText("True")
-                self.ui.sata2_status.setStyleSheet("color: #06B025;")
+                    self.ui.sata2_status.setText("True")
+                    self.ui.sata2_status.setStyleSheet("color: #06B025;")
 
-            else:
+                else:
 
-                self.ui.sata2_status.setText("False")
-                self.ui.sata2_status.setStyleSheet("color: #FF0000;")
+                    self.ui.sata2_status.setText("False")
+                    self.ui.sata2_status.setStyleSheet("color: #FF0000;")
 
-            resp = usb_module.USBCommunicatorThread.hid_comm(
-                device, 
-                target=0x23, 
-                nvs_status=0x00, 
-                cmd=0x03)
-            
-            if resp == b'HIGH':
+                resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device, 
+                    target=0x23,
+                    cmd=0x03)
+                
+                if resp == b'HIGH':
 
-                self.ui.nvme_status.setText("True")
-                self.ui.nvme_status.setStyleSheet("color: #06B025;")
+                    self.ui.nvme_status.setText("True")
+                    self.ui.nvme_status.setStyleSheet("color: #06B025;")
 
-            else:
+                else:
 
-                self.ui.nvme_status.setText("False")
-                self.ui.nvme_status.setStyleSheet("color: #FF0000;")
+                    self.ui.nvme_status.setText("False")
+                    self.ui.nvme_status.setStyleSheet("color: #FF0000;")
 
-            resp = usb_module.USBCommunicatorThread.hid_comm(
-                device, 
-                target=0x01, 
-                nvs_status=0x00, 
-                cmd=0x03)
-            
-            if resp == b'HIGH':
+                resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device, 
+                    target=0x01, 
+                    nvs_status=0x00, 
+                    cmd=0x03)
+                
+                if resp == b'HIGH':
 
-                self.ui.ext_power_status.setText("True")
-                self.ui.ext_power_status.setStyleSheet("color: #06B025;")
+                    self.ui.ext_power_status.setText("True")
+                    self.ui.ext_power_status.setStyleSheet("color: #06B025;")
 
-            else:
+                else:
 
-                self.ui.ext_power_status.setText("False")
-                self.ui.ext_power_status.setStyleSheet("color: #FF0000;")
+                    self.ui.ext_power_status.setText("False")
+                    self.ui.ext_power_status.setStyleSheet("color: #FF0000;")
+
+                resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device, 
+                    target=0x00, 
+                    nvs_status=0x00, 
+                    cmd=0x04)
+                
+                for i in [
+                    self.ui.combinemode,
+                    self.ui.nvmeonly,
+                    self.ui.sataonly,
+                    self.ui.hubonly
+                ]:
+                    if getattr(i, 'mode_id', None) == int.from_bytes(resp, byteorder='big'):
+                        i.setChecked(True)
+                        break
+
+                if resp == bytes(0):
+                    self.ui.selfpowered_groupbox.setEnabled(True)
+                    self.ui.extpowered_groupbox.setEnabled(True)
+                else:
+                    self.ui.selfpowered_groupbox.setEnabled(False)
+                    self.ui.extpowered_groupbox.setEnabled(False)
+
+                m_checked = []
+
+                for i in gpio_mode_id_list:
+                    if i.startswith("1"):
+                        resp = usb_module.USBCommunicatorThread.hid_comm(
+                            device, 
+                            target=gpio_mode_id_list[i],
+                            cmd=0x02)
+                    else:
+                        resp = usb_module.USBCommunicatorThread.hid_comm(
+                            device, 
+                            target=gpio_mode_id_list[i],
+                            cmd=0x07)
+                        
+                    if resp == b"HIGH":
+                        m_checked.append(i)
+
+                    # print (resp)
+
+                for i in [
+                    self.ui.nvme_self_power_checkbox,
+                    self.ui.sata1_self_power_checkbox,
+                    self.ui.sata2_self_power_checkbox,
+                    self.ui.nvme_ext_power_checkbox,
+                    self.ui.sata1_ext_power_checkbox,
+                    self.ui.sata2_ext_power_checkbox
+                ]:
+                    if getattr(i, 'mode_id', None) in m_checked:
+                        i.setChecked(True)
+                    else:
+                        i.setChecked(False)
+
+            except:
+                
+                pass
 
         else:
 

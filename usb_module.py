@@ -25,12 +25,12 @@ class USBCommunicatorThread(QThread):
     def calc_hmac(data: bytes) -> bytes:
         return hmac.new(HMAC_KEY, data, hashlib.sha256).digest()
 
-    def create_packet(target: int, nvs_status: int, cmd: int, ext_status: int) -> bytes:
+    def create_packet(target: int, nvs_status: int, cmd: int, exclosure_status = 0x00, ext_gpio_config = 0x00) -> bytes:
 
         # cmd_padded = cmd.ljust(30, b"\x00")
         # data = bytes([target]) + cmd_padded + bytes([nvs_status])
-        last_padded = bytes([nvs_status]).ljust(30, b"\x00")
-        data = bytes([target, cmd, nvs_status, ext_status]) + last_padded
+        last_padded = bytes([ext_gpio_config]).ljust(28, b"\x00")
+        data = bytes([target, cmd, nvs_status, exclosure_status]) + last_padded
         mac = USBCommunicatorThread.calc_hmac(data)
         return bytes([REPORT_ID]) + data + mac
 
@@ -66,10 +66,11 @@ class USBCommunicatorThread(QThread):
     @staticmethod
     def hid_comm(
             device, 
-            target: int, 
-            nvs_status: int, 
+            target: int,
             cmd: int,
-            ext_status = 0x02
+            nvs_status = 0x00, 
+            exclosure_status = 0x00,
+            ext_gpio_config = 0x00
             ):
         """HID通信函数
 
@@ -77,11 +78,12 @@ class USBCommunicatorThread(QThread):
             device -- 目标HID设备
             target -- 通信命令（0xFE，握手命令）/目标GPIO（0x01-0x2C）
             nvs_status -- 是否存储设置到NVS（0x01启用存储）
-            cmd -- GPIO操作命令（0x00低电平、0x01高电平、0x02查询nvs存储状态、0x03查询GPIO电平状态）
-            ext_status -- 在外置供电插入时，对应的设备状态。（默认为0x02，即全模式通用）
+            cmd -- GPIO操作命令（0x00低电平、0x01高电平、0x02查询nvs存储的GPIO状态、0x03查询当前GPIO电平状态、0x04查询硬盘盒状态、0x05硬盘盒模式存储、0x06存储高电平时的GPIO状态、0x07重新应用GPIO状态、0x08SATA硬盘1延时上电）
+            exclosure_status -- 设备状态。（默认为0x00，即Combine Mode）
+            ext_gpio_config -- 存储高电平时的GPIO状态
         """
 
-        packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd, ext_status)
+        packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd, exclosure_status, ext_gpio_config)
         device.write(packet)
 
         try:
@@ -94,7 +96,7 @@ class USBCommunicatorThread(QThread):
 
         resp = bytes(resp)
         if USBCommunicatorThread.verify_response(resp):
-            resp_target = resp[0]
+            # resp_target = resp[0]
             resp_cmd = resp[1:32].rstrip(b"\x00")
             # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
             return resp_cmd
