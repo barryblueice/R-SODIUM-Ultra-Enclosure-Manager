@@ -102,6 +102,8 @@ class EnclosureModeHandler(QObject):
                 USB_COMM.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x00)
                 USB_COMM.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x00)
 
+        self.finished.emit()
+
 def on_boxmode_execute_clicked(main_window: MainWindow):
     # 启动进度窗口
     main_window.progress_window = ProgressWindow(main_window=main_window)
