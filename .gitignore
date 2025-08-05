@@ -2,9 +2,10 @@
 *.workspace
 *.jpg
 *.png
-*.bat
 *test*.py
 test*.py
+pyqttoast/
+qtpy/
 .vscode/
 __pycache__/
 **/__pycache__/

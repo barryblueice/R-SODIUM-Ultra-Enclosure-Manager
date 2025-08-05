@@ -62,7 +62,6 @@ def on_sata_execute_clicked(main_window: MainWindow):
     worker = SATAHandler(device, n, sata_onpower)
     worker.moveToThread(thread)
 
-    # 保持引用
     main_window.sata_thread = thread
     main_window.sata_worker = worker
 

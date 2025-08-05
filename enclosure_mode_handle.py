@@ -105,16 +105,13 @@ class EnclosureModeHandler(QObject):
         self.finished.emit()
 
 def on_boxmode_execute_clicked(main_window: MainWindow):
-    # 启动进度窗口
     main_window.progress_window = ProgressWindow(main_window=main_window)
     main_window.progress_window.progressbar_start()
 
-    # 创建线程
     thread = QThread()
     worker = EnclosureModeHandler(main_window, device)
     worker.moveToThread(thread)
 
-    # 保持引用，避免被销毁
     main_window.boxmode_thread = thread
     main_window.boxmode_worker = worker
 
