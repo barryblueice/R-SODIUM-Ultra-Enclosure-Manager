@@ -47,9 +47,6 @@ def on_boxmode_execute_clicked(main_window: MainWindow):
                 else:
                     m_not_checked.append(i.mode_id)
 
-            # print(m_not_checked)
-            # print(m_not_checked)
-
             for i in m_checked:
 
                 if i.startswith('1'):
@@ -62,17 +59,19 @@ def on_boxmode_execute_clicked(main_window: MainWindow):
                     USB_COMM.hid_comm(device, target=gpio_mode_id_list[i], cmd=0x06, ext_gpio_config=0x01)
 
             for i in m_not_checked:
-
                 if i.startswith('1'):
-                    if not i.endswith(('2','3')):
-                        USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
                     USB_COMM.hid_comm(device, target=gpio_mode_id_list[i], nvs_status=0x01, cmd=0x00)
                 else:
-                    if not i.endswith(('2','3')):
-                        USB_COMM.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x00)
                     USB_COMM.hid_comm(device, target=gpio_mode_id_list[i], cmd=0x06, ext_gpio_config=0x00)
 
-            USB_COMM.hid_comm(device, target=0x00, cmd=0xFD)
+            if "12" in m_not_checked and "13" in m_not_checked:
+                USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
+                
+            if "22" in m_not_checked and "23" in m_not_checked:
+                USB_COMM.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x00)
+
+
+            USB_COMM.hid_comm(device, target=0x00, cmd=0xfd)
 
             # USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x01)
             # USB_COMM.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x01)

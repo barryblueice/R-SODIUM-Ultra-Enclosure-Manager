@@ -7,6 +7,7 @@
 from main_windows import MainWindow
 
 from enclosure_mode_handle import on_boxmode_execute_clicked
+from sata_handle import on_sata_execute_clicked
 
 class MainInterfaceController:
     def __init__(self, main_window: MainWindow):
@@ -22,7 +23,7 @@ class MainInterfaceController:
         ui.about_button.clicked.connect(lambda: controller.activate_only(ui.about))
 
         ui.boxmode_execute.clicked.connect(lambda: on_boxmode_execute_clicked(self.main_window))
-        ui.sata_execute.clicked.connect(self.on_sata_excute_clicked)
+        ui.sata_execute.clicked.connect(lambda: on_sata_execute_clicked(self.main_window))
         
         ui.combinemode.clicked.connect(self.enclosure_mode_group_changed)
         ui.nvmeonly.clicked.connect(self.enclosure_mode_group_changed)

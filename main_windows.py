@@ -118,7 +118,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
                 resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 
-                    target=0x22,
+                    target=0x26,
                     cmd=0x03)
                 
                 if resp == b'HIGH':
@@ -133,7 +133,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
                 resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 
-                    target=0x26,
+                    target=0x22,
                     cmd=0x03)
                 
                 if resp == b'HIGH':
