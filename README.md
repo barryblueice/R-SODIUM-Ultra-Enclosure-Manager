@@ -6,6 +6,8 @@
 ## **简介：**
 基于Python+Pyside6的R-SODIUM Ultra Enclosure GUI控制端。
 
+使用Inno Setup Compiler打包为安装程序。
+
 <img width="509" height="423" alt="image" src="https://github.com/user-attachments/assets/f2bd080a-25d7-4438-a49b-ed5ae81653a1" />
 
 ## **协议：**
