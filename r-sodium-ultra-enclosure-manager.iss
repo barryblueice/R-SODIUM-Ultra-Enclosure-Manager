@@ -5,7 +5,7 @@
 #define MyAppVersion "1.1"
 #define MyAppPublisher "R-SODIUM Technology"
 #define MyAppURL "https://github.com/barryblueice/R-SODIUM-Ultra-Enclosure-Manager"
-#define MyAppExeName "main.exe"
+#define MyAppExeName "R-SODIUM-Ultra-SSD-Enclosure-Manager.exe"
 #define MyAppAssocName MyAppName + ""
 #define MyAppAssocExt ".myp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
