@@ -97,25 +97,30 @@ class USBCommunicatorThread(QThread):
             ext_gpio_config -- 存储高电平时的GPIO状态
         """
 
-        packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd, exclosure_status, ext_gpio_config)
-        device.write(packet)
+        while True:
 
-        try:
-            resp = device.read(REPORT_SIZE, timeout_ms=1000)
-        except Exception as e:
-            return None
+            packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd, exclosure_status, ext_gpio_config)
+            device.write(packet)
 
-        if not resp:
-            return None
+            try:
+                resp = device.read(REPORT_SIZE, timeout_ms=1000)
+            except Exception as e:
+                pass
 
-        resp = bytes(resp)
-        if USBCommunicatorThread.verify_response(resp):
-            # resp_target = resp[0]
-            resp_cmd = resp[1:32].rstrip(b"\x00")
-            # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
-            return resp_cmd
-        else:
-            return None
+            if not resp:
+                pass
+
+            if all(b == 0xFF for b in resp):
+                pass
+            else:
+                resp = bytes(resp)
+                if USBCommunicatorThread.verify_response(resp):
+                    # resp_target = resp[0]
+                    resp_cmd = resp[1:32].rstrip(b"\x00")
+                    # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
+                    return resp_cmd
+                else:
+                    pass
         
     def verify_rsodium_hid_controller(
             device: hid.device
