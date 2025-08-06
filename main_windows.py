@@ -259,6 +259,24 @@ class MainWindow(QtWidgets.QMainWindow):
                 
                 self.ui.powertime.setValue(int.from_bytes(resp, byteorder='big'))
 
+                resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device, 
+                    cmd=0x0B)
+                
+                if resp == b'HIGH':
+                    self.ui.suspend_enable.setChecked(True)
+                else:
+                    self.ui.suspend_enable.setChecked(False)
+
+                resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device, 
+                    cmd=0x0B)
+                
+                if resp == b'HIGH':
+                    self.ui.suspend_enable.setChecked(True)
+                else:
+                    self.ui.suspend_enable.setChecked(False)
+
                 resp1 = usb_module.USBCommunicatorThread.hid_comm(device,target=0x24,cmd=0x02)
                 resp2 = usb_module.USBCommunicatorThread.hid_comm(device,target=0x25,cmd=0x02)
 
