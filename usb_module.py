@@ -118,7 +118,7 @@ class USBCommunicatorThread(QThread):
                     # resp_target = resp[0]
                     resp_cmd = resp[1:32].rstrip(b"\x00")
                     # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
-                    return resp_cmd
+                    return target,resp_cmd
                 else:
                     pass
         

@@ -6,6 +6,7 @@ from pyqttoast import Toast, ToastIcon
 
 import usb_module
 import groupboxcontroller
+import time
 
 device = usb_module.USBCommunicatorThread.dev
 
@@ -112,74 +113,130 @@ class MainWindow(QtWidgets.QMainWindow):
             gb.setVisible(gb == target_widget)
 
     def overview_status_changed(self, status: bool):
+
+        a = {}
             
         if status:
+
+            # try:
+
+                for i in [0x01,0x22,0x23,0x26]:
+                        
+                    while True:
+                        target,resp = usb_module.USBCommunicatorThread.hid_comm(
+                        device, 
+                        target=i,
+                        cmd=0x03)
+
+                        if target == i:
+
+                            if resp == b'HIGH':
+
+                                a.update({i:["True","#06B025"]})
+
+                            else:
+
+                                a.update({i:["False","#FF0000"]})
+
+                        break
+
+                for i in a.keys():
+
+                    match i:
+
+                        case 0x01:
+
+                            self.ui.ext_power_status.setText(a[i][0])
+                            self.ui.ext_power_status.setStyleSheet(f"color: {a[i][1]};")
+
+                        case 0x22:
+
+                            self.ui.sata2_status.setText(a[i][0])
+                            self.ui.sata2_status.setStyleSheet(f"color: {a[i][1]};")
+
+                        case 0x23:
+
+                            self.ui.nvme_status.setText(a[i][0])
+                            self.ui.nvme_status.setStyleSheet(f"color: {a[i][1]};")
+
+                        case 0x26:
+
+                            self.ui.sata1_status.setText(a[i][0])
+                            self.ui.sata1_status.setStyleSheet(f"color: {a[i][1]};")
+
+                        case _:
+
+                            pass
+
+            # except:
+
+            #     pass
                 
-            try:
+            # try:
 
-                resp = usb_module.USBCommunicatorThread.hid_comm(
-                    device, 
-                    target=0x26,
-                    cmd=0x02)
+            #     target,resp = usb_module.USBCommunicatorThread.hid_comm(
+            #         device, 
+            #         target=0x26,
+            #         cmd=0x02)
                 
-                if resp == b'HIGH':
+            #     if resp == b'HIGH':
 
-                    self.ui.sata1_status.setText("True")
-                    self.ui.sata1_status.setStyleSheet("color: #06B025;")
+            #         self.ui.sata1_status.setText("True")
+            #         self.ui.sata1_status.setStyleSheet("color: #06B025;")
 
-                else:
+            #     else:
 
-                    self.ui.sata1_status.setText("False")
-                    self.ui.sata1_status.setStyleSheet("color: #FF0000;")
+            #         self.ui.sata1_status.setText("False")
+            #         self.ui.sata1_status.setStyleSheet("color: #FF0000;")
 
-                resp = usb_module.USBCommunicatorThread.hid_comm(
-                    device, 
-                    target=0x22,
-                    cmd=0x02)
+            #     target,resp = usb_module.USBCommunicatorThread.hid_comm(
+            #         device, 
+            #         target=0x22,
+            #         cmd=0x02)
                 
-                if resp == b'HIGH':
+            #     if resp == b'HIGH':
 
-                    self.ui.sata2_status.setText("True")
-                    self.ui.sata2_status.setStyleSheet("color: #06B025;")
+            #         self.ui.sata2_status.setText("True")
+            #         self.ui.sata2_status.setStyleSheet("color: #06B025;")
 
-                else:
+            #     else:
 
-                    self.ui.sata2_status.setText("False")
-                    self.ui.sata2_status.setStyleSheet("color: #FF0000;")
+            #         self.ui.sata2_status.setText("False")
+            #         self.ui.sata2_status.setStyleSheet("color: #FF0000;")
 
-                resp = usb_module.USBCommunicatorThread.hid_comm(
-                    device, 
-                    target=0x23,
-                    cmd=0x02)
+            #     target,resp = usb_module.USBCommunicatorThread.hid_comm(
+            #         device, 
+            #         target=0x23,
+            #         cmd=0x02)
                 
-                if resp == b'HIGH':
+            #     if resp == b'HIGH':
 
-                    self.ui.nvme_status.setText("True")
-                    self.ui.nvme_status.setStyleSheet("color: #06B025;")
+            #         self.ui.nvme_status.setText("True")
+            #         self.ui.nvme_status.setStyleSheet("color: #06B025;")
 
-                else:
+            #     else:
 
-                    self.ui.nvme_status.setText("False")
-                    self.ui.nvme_status.setStyleSheet("color: #FF0000;")
+            #         self.ui.nvme_status.setText("False")
+            #         self.ui.nvme_status.setStyleSheet("color: #FF0000;")
 
-                resp = usb_module.USBCommunicatorThread.hid_comm(
-                    device, 
-                    target=0x01, 
-                    cmd=0x03)
+            #     target,resp = usb_module.USBCommunicatorThread.hid_comm(
+            #         device, 
+            #         target=0x01, 
+            #         cmd=0x03)
                 
-                if resp == b'HIGH':
+            #     if resp == b'HIGH':
 
-                    self.ui.ext_power_status.setText("True")
-                    self.ui.ext_power_status.setStyleSheet("color: #06B025;")
+            #         self.ui.ext_power_status.setText("True")
+            #         self.ui.ext_power_status.setStyleSheet("color: #06B025;")
 
-                else:
+            #     else:
 
-                    self.ui.ext_power_status.setText("False")
-                    self.ui.ext_power_status.setStyleSheet("color: #FF0000;")
+            #         self.ui.ext_power_status.setText("False")
+            #         self.ui.ext_power_status.setStyleSheet("color: #FF0000;")
 
-            except:
+            # except:
                 
-                pass
+            #     pass
 
         else:
 
@@ -197,7 +254,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
             if status:
 
-                resp = usb_module.USBCommunicatorThread.hid_comm(
+                target,resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 
                     target=0x00, 
                     nvs_status=0x00, 
@@ -224,12 +281,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
                 for i in gpio_mode_id_list:
                     if i.startswith("1"):
-                        resp = usb_module.USBCommunicatorThread.hid_comm(
+                        target,resp = usb_module.USBCommunicatorThread.hid_comm(
                             device, 
                             target=gpio_mode_id_list[i],
                             cmd=0x02)
                     else:
-                        resp = usb_module.USBCommunicatorThread.hid_comm(
+                        target,resp = usb_module.USBCommunicatorThread.hid_comm(
                             device, 
                             target=gpio_mode_id_list[i],
                             cmd=0x07)
@@ -252,13 +309,13 @@ class MainWindow(QtWidgets.QMainWindow):
                     else:
                         i.setChecked(False)
 
-                resp = usb_module.USBCommunicatorThread.hid_comm(
+                target,resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 
                     cmd=0x09)
                 
                 self.ui.powertime.setValue(int.from_bytes(resp, byteorder='big'))
 
-                resp = usb_module.USBCommunicatorThread.hid_comm(
+                target,resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 
                     cmd=0x0B)
                 
@@ -267,7 +324,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 else:
                     self.ui.suspend_enable.setChecked(False)
 
-                resp = usb_module.USBCommunicatorThread.hid_comm(
+                target,resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 
                     cmd=0x0D)
                 
@@ -276,8 +333,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 else:
                     self.ui.unmounted_suspend_enable.setChecked(False)
 
-                resp1 = usb_module.USBCommunicatorThread.hid_comm(device,target=0x24,cmd=0x02)
-                resp2 = usb_module.USBCommunicatorThread.hid_comm(device,target=0x25,cmd=0x02)
+                target,resp1 = usb_module.USBCommunicatorThread.hid_comm(device,target=0x24,cmd=0x02)
+                target,resp2 = usb_module.USBCommunicatorThread.hid_comm(device,target=0x25,cmd=0x02)
 
                 for i in [
                     self.ui.R0,
