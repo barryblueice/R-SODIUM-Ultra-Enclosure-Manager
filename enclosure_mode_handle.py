@@ -50,6 +50,11 @@ class EnclosureModeHandler(QObject):
         else:
             USB_COMM.hid_comm(device, target=0x00, cmd=0x0A)
 
+        if self.main_window.ui.unmounted_suspend_enable.isChecked():
+            USB_COMM.hid_comm(device, target=0x01, cmd=0x0C)
+        else:
+            USB_COMM.hid_comm(device, target=0x00, cmd=0x0C)
+
         match n:
             case 0: # COMBINE MODE
                 for i in [

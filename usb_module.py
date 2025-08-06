@@ -78,7 +78,21 @@ class USBCommunicatorThread(QThread):
             device -- 目标HID设备
             target -- 通信命令（0xFE，握手命令）/目标GPIO（0x01-0x2C）
             nvs_status -- 是否存储设置到NVS（0x01启用存储）
-            cmd -- GPIO操作命令（0x00低电平、0x01高电平、0x02查询nvs存储的GPIO状态、0x03查询当前GPIO电平状态、0x04查询硬盘盒状态、0x05硬盘盒模式存储、0x06存储高电平时的GPIO状态、0x07重新应用GPIO状态、0x08SATA硬盘延时上电、0x09查询SATA硬盘延时上电时间、0x0A存储硬盘盒休眠时间、0x0B查询硬盘盒休眠时间）
+            cmd -- GPIO操作命令。
+                0x00低电平
+                0x01高电平
+                0x02查询nvs存储的GPIO状态
+                0x03查询当前GPIO电平状态
+                0x04查询硬盘盒状态
+                0x05硬盘盒模式存储
+                0x06存储高电平时的GPIO状态
+                0x07重新应用GPIO状态
+                0x08SATA硬盘延时上电
+                0x09查询SATA硬盘延时上电时间
+                0x0A是否随主机端休眠
+                0x0B查询随主机端休眠状态
+                0x0C是否控制器卸载后休眠
+                0x0D查询控制器卸载后休眠状态
             exclosure_status -- 设备状态。（默认为0x00，即Combine Mode）
             ext_gpio_config -- 存储高电平时的GPIO状态
         """
