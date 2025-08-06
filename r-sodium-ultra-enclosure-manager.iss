@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "R-SODIUM Ultra SSD Enclosure Manager"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "R-SODIUM Technology"
 #define MyAppURL "https://github.com/barryblueice/R-SODIUM-Ultra-Enclosure-Manager"
 #define MyAppExeName "main.exe"
