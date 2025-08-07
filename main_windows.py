@@ -96,7 +96,7 @@ class MainWindow(QtWidgets.QMainWindow):
         toast = Toast(self)
         toast.setAlwaysOnMainScreen(True)
         self.ui_state(status=status)
-        self.overview_status_changed(status=status)
+        self.overview_status_changed()
         self.connect_event_handle(status=status)
         if status:
             if self.global_status != status:
@@ -117,7 +117,7 @@ class MainWindow(QtWidgets.QMainWindow):
         for gb in self.groupbox_list:
             gb.setVisible(gb == target_widget)
 
-    def overview_status_changed(self, status: bool):
+    def overview_status_changed(self):
 
         a = {}
             

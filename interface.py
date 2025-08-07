@@ -18,7 +18,7 @@ class MainInterfaceController:
         controller = self.main_window.controller
 
         ui.overview_button.clicked.connect(lambda: controller.activate_only(ui.overview))
-        ui.overview_button.clicked.connect(lambda: MainWindow.overview_status_changed(self.main_window,True))
+        ui.overview_button.clicked.connect(lambda: MainWindow.overview_status_changed(self.main_window))
         ui.SATA_Interface_button.clicked.connect(lambda: controller.activate_only(ui.sataconfig))
         ui.boxmode_button.clicked.connect(lambda: controller.activate_only(ui.boxmode))
         ui.about_button.clicked.connect(lambda: controller.activate_only(ui.about))
