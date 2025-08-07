@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>494</width>
+    <width>495</width>
     <height>375</height>
    </rect>
   </property>
@@ -483,15 +483,15 @@ may not support this function!</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>-391</y>
+       <y>-451</y>
        <width>297</width>
-       <height>740</height>
+       <height>800</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
        <width>100</width>
-       <height>740</height>
+       <height>800</height>
       </size>
      </property>
      <property name="autoFillBackground">
@@ -501,7 +501,7 @@ may not support this function!</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>680</y>
+        <y>740</y>
         <width>91</width>
         <height>41</height>
        </rect>
@@ -921,6 +921,31 @@ host is suspended.</string>
       <property name="text">
        <string>Enable enclosure suspend when
 enlosure is unmounted.</string>
+      </property>
+      <property name="autoExclusive">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="apply_changes_immediately">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>670</y>
+        <width>211</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Apply power-up changes
+immediately after executed.</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
       </property>
       <property name="autoExclusive">
        <bool>true</bool>

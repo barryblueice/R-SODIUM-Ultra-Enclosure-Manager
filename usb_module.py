@@ -25,12 +25,12 @@ class USBCommunicatorThread(QThread):
     def calc_hmac(data: bytes) -> bytes:
         return hmac.new(HMAC_KEY, data, hashlib.sha256).digest()
 
-    def create_packet(target: int, nvs_status: int, cmd: int, exclosure_status = 0x00, ext_gpio_config = 0x00) -> bytes:
+    def create_packet(target: int, nvs_status: int, cmd: int, exclosure_status = 0x00, ext_gpio_config = 0x00, applied = 0x00) -> bytes:
 
         # cmd_padded = cmd.ljust(30, b"\x00")
         # data = bytes([target]) + cmd_padded + bytes([nvs_status])
-        last_padded = bytes([ext_gpio_config]).ljust(28, b"\x00")
-        data = bytes([target, cmd, nvs_status, exclosure_status]) + last_padded
+        last_padded = bytes([applied]).ljust(27, b"\x00")
+        data = bytes([target, cmd, nvs_status, exclosure_status, ext_gpio_config]) + last_padded
         mac = USBCommunicatorThread.calc_hmac(data)
         return bytes([REPORT_ID]) + data + mac
 
@@ -70,7 +70,8 @@ class USBCommunicatorThread(QThread):
             target = 0x00,
             nvs_status = 0x00, 
             exclosure_status = 0x00,
-            ext_gpio_config = 0x00
+            ext_gpio_config = 0x00,
+            applied = 0x00
             ):
         """HID通信函数
 
@@ -95,35 +96,34 @@ class USBCommunicatorThread(QThread):
                 0x0D查询控制器卸载后休眠状态
             exclosure_status -- 设备状态。（默认为0x00，即Combine Mode）
             ext_gpio_config -- 存储高电平时的GPIO状态
+            applied -- 立刻执行
         """
 
-        while True:
+        packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd, exclosure_status, ext_gpio_config, applied)
+        device.write(packet)
 
-            packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd, exclosure_status, ext_gpio_config)
-            device.write(packet)
+        try:
 
-            try:
+            resp = device.read(REPORT_SIZE, timeout_ms=1000)
 
-                resp = device.read(REPORT_SIZE, timeout_ms=1000)
+        except:
 
-            except:
+            return target,False
+        
+        if not resp:
+            return None
 
-                return target,False
-            
-            if not resp:
-                pass
-
-            if all(b == 0xFF for b in resp):
-                pass
+        if all(b == 0xFF for b in resp):
+            pass
+        else:
+            resp = bytes(resp)
+            if USBCommunicatorThread.verify_response(resp):
+                # resp_target = resp[0]
+                resp_cmd = resp[1:32].rstrip(b"\x00")
+                # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
+                return target,resp_cmd
             else:
-                resp = bytes(resp)
-                if USBCommunicatorThread.verify_response(resp):
-                    # resp_target = resp[0]
-                    resp_cmd = resp[1:32].rstrip(b"\x00")
-                    # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
-                    return target,resp_cmd
-                else:
-                    pass
+                return None
         
     def verify_rsodium_hid_controller(
             device: hid.device

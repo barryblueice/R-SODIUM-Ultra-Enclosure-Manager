@@ -89,9 +89,6 @@ class EnclosureModeHandler(QObject):
                 if "22" in m_not_checked and "23" in m_not_checked:
                     USBCommunicatorThread.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x00)
 
-
-                USBCommunicatorThread.hid_comm(device, target=0x00, cmd=0xfd)
-
             case 1: # ASM2362 ONLY
                 USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x00)
@@ -107,6 +104,10 @@ class EnclosureModeHandler(QObject):
                 USBCommunicatorThread.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x00)
+
+        if self.main_window.ui.apply_changes_immediately.isChecked():
+
+            USBCommunicatorThread.hid_comm(device, target=0x00, cmd=0xfd)
 
         self.finished.emit()
 

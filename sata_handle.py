@@ -22,21 +22,21 @@ class SATAHandler(QObject):
     def run(self):
         match self.n:
             case 30:
-                USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x00)
-                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x01)
+                USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x00, applied=0x01)
+                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x01, applied=0x01)
             case 31:
-                USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x01)
-                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x00)
+                USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x01, applied=0x01)
+                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x00, applied=0x01)
             case 32:
-                USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x00)
-                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x00)
+                USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x00, applied=0x01)
+                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x00, applied=0x01)
             case _:
-                USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x01)
-                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x01)
+                USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x01, applied=0x01)
+                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x0, applied=0x011)
 
-        USB_COMM.hid_comm(self.device, target=0x15, cmd=0x00)
+        USB_COMM.hid_comm(self.device, target=0x15, cmd=0x00, applied=0x01)
         time.sleep(6)
-        USB_COMM.hid_comm(self.device, target=0x15, cmd=0x01)
+        USB_COMM.hid_comm(self.device, target=0x15, cmd=0x01, applied=0x01)
         USB_COMM.hid_comm(self.device, target=self.sata_onpower, cmd=0x08)
 
         self.finished.emit()
