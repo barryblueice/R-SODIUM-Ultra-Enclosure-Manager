@@ -102,7 +102,13 @@ class USBCommunicatorThread(QThread):
             packet = USBCommunicatorThread.create_packet(target, nvs_status, cmd, exclosure_status, ext_gpio_config)
             device.write(packet)
 
-            resp = device.read(REPORT_SIZE, timeout_ms=1000)
+            try:
+
+                resp = device.read(REPORT_SIZE, timeout_ms=1000)
+
+            except:
+
+                return target,False
             
             if not resp:
                 pass

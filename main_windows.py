@@ -30,6 +30,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setFixedSize(self.width(), self.height())
         self.ui_state(False)
         self.global_status = False
+        self.ui_status = False
 
         self.monitor_thread = usb_module.USBCommunicatorThread()
         self.monitor_thread.device_event.connect(self.on_device_status_changed)
@@ -89,6 +90,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.sataconfig.setEnabled(status)
         self.ui.SATA_Interface_button.setEnabled(status)
         self.ui.boxmode_button.setEnabled(status)
+        self.ui_status = status
 
     def on_device_status_changed(self, status: bool):
         toast = Toast(self)
@@ -119,9 +121,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         a = {}
             
-        if status:
+        if self.ui_status:
 
-            # try:
+            try:
 
                 for i in [0x01,0x22,0x23,0x26]:
                         
@@ -171,75 +173,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
                             pass
 
-            # except:
+            except:
 
-            #     pass
-                
-            # try:
-
-            #     target,resp = usb_module.USBCommunicatorThread.hid_comm(
-            #         device, 
-            #         target=0x26,
-            #         cmd=0x02)
-                
-            #     if resp == b'HIGH':
-
-            #         self.ui.sata1_status.setText("True")
-            #         self.ui.sata1_status.setStyleSheet("color: #06B025;")
-
-            #     else:
-
-            #         self.ui.sata1_status.setText("False")
-            #         self.ui.sata1_status.setStyleSheet("color: #FF0000;")
-
-            #     target,resp = usb_module.USBCommunicatorThread.hid_comm(
-            #         device, 
-            #         target=0x22,
-            #         cmd=0x02)
-                
-            #     if resp == b'HIGH':
-
-            #         self.ui.sata2_status.setText("True")
-            #         self.ui.sata2_status.setStyleSheet("color: #06B025;")
-
-            #     else:
-
-            #         self.ui.sata2_status.setText("False")
-            #         self.ui.sata2_status.setStyleSheet("color: #FF0000;")
-
-            #     target,resp = usb_module.USBCommunicatorThread.hid_comm(
-            #         device, 
-            #         target=0x23,
-            #         cmd=0x02)
-                
-            #     if resp == b'HIGH':
-
-            #         self.ui.nvme_status.setText("True")
-            #         self.ui.nvme_status.setStyleSheet("color: #06B025;")
-
-            #     else:
-
-            #         self.ui.nvme_status.setText("False")
-            #         self.ui.nvme_status.setStyleSheet("color: #FF0000;")
-
-            #     target,resp = usb_module.USBCommunicatorThread.hid_comm(
-            #         device, 
-            #         target=0x01, 
-            #         cmd=0x03)
-                
-            #     if resp == b'HIGH':
-
-            #         self.ui.ext_power_status.setText("True")
-            #         self.ui.ext_power_status.setStyleSheet("color: #06B025;")
-
-            #     else:
-
-            #         self.ui.ext_power_status.setText("False")
-            #         self.ui.ext_power_status.setStyleSheet("color: #FF0000;")
-
-            # except:
-                
-            #     pass
+                pass
 
         else:
 
