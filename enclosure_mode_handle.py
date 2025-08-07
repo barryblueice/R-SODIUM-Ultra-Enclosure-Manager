@@ -6,10 +6,6 @@ from usb_module import USBCommunicatorThread
 
 import time
 
-USB_COMM = USBCommunicatorThread()
-
-device = USBCommunicatorThread.dev
-
 gpio_mode_id_list = {
     "11": 0x23,
     "12": 0x26,
@@ -31,6 +27,7 @@ class EnclosureModeHandler(QObject):
     def run(self):
         m_checked = []
         m_not_checked = []
+        device = USBCommunicatorThread.dev
         for i in [
             self.main_window.ui.combinemode,
             self.main_window.ui.nvmeonly,
@@ -40,20 +37,19 @@ class EnclosureModeHandler(QObject):
             n = 0
             if i.isChecked():
                 n = i.mode_id
-                # print (n)
                 break
 
-        USB_COMM.hid_comm(device, target=n, cmd=0x05)
+        USBCommunicatorThread.hid_comm(device, target=n, cmd=0x05)
 
         if self.main_window.ui.suspend_enable.isChecked():
-            USB_COMM.hid_comm(device, target=0x01, cmd=0x0A)
+            USBCommunicatorThread.hid_comm(device, target=0x01, cmd=0x0A)
         else:
-            USB_COMM.hid_comm(device, target=0x00, cmd=0x0A)
+            USBCommunicatorThread.hid_comm(device, target=0x00, cmd=0x0A)
 
         if self.main_window.ui.unmounted_suspend_enable.isChecked():
-            USB_COMM.hid_comm(device, target=0x01, cmd=0x0C)
+            USBCommunicatorThread.hid_comm(device, target=0x01, cmd=0x0C)
         else:
-            USB_COMM.hid_comm(device, target=0x00, cmd=0x0C)
+            USBCommunicatorThread.hid_comm(device, target=0x00, cmd=0x0C)
 
         match n:
             case 0: # COMBINE MODE
@@ -74,47 +70,48 @@ class EnclosureModeHandler(QObject):
 
                     if i.startswith('1'):
                         if not i.endswith(('0','1')):
-                            USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x01)
-                        USB_COMM.hid_comm(device, target=gpio_mode_id_list[i], nvs_status=0x01, cmd=0x01)
+                            USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x01)
+                        USBCommunicatorThread.hid_comm(device, target=gpio_mode_id_list[i], nvs_status=0x01, cmd=0x01)
                     else:
                         if not i.endswith(('0','1')):
-                            USB_COMM.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x01)
-                        USB_COMM.hid_comm(device, target=gpio_mode_id_list[i], cmd=0x06, ext_gpio_config=0x01)
+                            USBCommunicatorThread.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x01)
+                        USBCommunicatorThread.hid_comm(device, target=gpio_mode_id_list[i], cmd=0x06, ext_gpio_config=0x01)
 
                 for i in m_not_checked:
                     if i.startswith('1'):
-                        USB_COMM.hid_comm(device, target=gpio_mode_id_list[i], nvs_status=0x01, cmd=0x00)
+                        USBCommunicatorThread.hid_comm(device, target=gpio_mode_id_list[i], nvs_status=0x01, cmd=0x00)
                     else:
-                        USB_COMM.hid_comm(device, target=gpio_mode_id_list[i], cmd=0x06, ext_gpio_config=0x00)
+                        USBCommunicatorThread.hid_comm(device, target=gpio_mode_id_list[i], cmd=0x06, ext_gpio_config=0x00)
 
                 if "12" in m_not_checked and "13" in m_not_checked:
-                    USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
+                    USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
 
                 if "22" in m_not_checked and "23" in m_not_checked:
-                    USB_COMM.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x00)
+                    USBCommunicatorThread.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x00)
 
 
-                USB_COMM.hid_comm(device, target=0x00, cmd=0xfd)
+                USBCommunicatorThread.hid_comm(device, target=0x00, cmd=0xfd)
 
             case 1: # ASM2362 ONLY
-                USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
-                USB_COMM.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x00)
-                USB_COMM.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x01)
-                USB_COMM.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x01)
+                USBCommunicatorThread.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x00)
             case 2: # ASM1352R ONLY
-                USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x01)
-                USB_COMM.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x01)
-                USB_COMM.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x00)
-                USB_COMM.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x01)
+                USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x01)
+                USBCommunicatorThread.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x01)
+                USBCommunicatorThread.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x01)
             case _: # HUB ONLY or other condition
-                USB_COMM.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
-                USB_COMM.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x00)
-                USB_COMM.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x00)
-                USB_COMM.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x00)
 
         self.finished.emit()
 
 def on_boxmode_execute_clicked(main_window: MainWindow):
+    device = USBCommunicatorThread.dev
     main_window.progress_window = ProgressWindow(main_window=main_window)
     main_window.progress_window.progressbar_start()
 

@@ -29,6 +29,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.ui_state(False)
+        self.global_status = False
 
         self.monitor_thread = usb_module.USBCommunicatorThread()
         self.monitor_thread.device_event.connect(self.on_device_status_changed)
@@ -96,11 +97,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.overview_status_changed(status=status)
         self.connect_event_handle(status=status)
         if status:
-            toast.setText('A new Ultra SSD Enclosure device has detected!')
-            toast.setIcon(ToastIcon.SUCCESS)
+            if self.global_status != status:
+                toast.setText('A new Ultra SSD Enclosure device has detected!')
+                toast.setIcon(ToastIcon.SUCCESS)
         else:
             toast.setText('The Ultra SSD Enclosure device has been removed!')
             toast.setIcon(ToastIcon.INFORMATION)
+            self.global_status = False
         toast.setIconColor(None)
         toast.setShowIcon(True)
         toast.setShowDurationBar(False)
