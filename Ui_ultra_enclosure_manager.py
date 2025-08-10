@@ -387,9 +387,9 @@ class Ui_main_interface(object):
         self.boxmode_button.raise_()
         self.about_button.raise_()
         self.about.raise_()
-        self.overview.raise_()
         self.sataconfig.raise_()
         self.boxmode.raise_()
+        self.overview.raise_()
 
         self.retranslateUi(main_interface)
 

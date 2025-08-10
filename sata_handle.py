@@ -32,7 +32,7 @@ class SATAHandler(QObject):
                 USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x00, applied=0x01)
             case _:
                 USB_COMM.hid_comm(self.device,target=0x24,nvs_status=0x01,cmd=0x01, applied=0x01)
-                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x0, applied=0x011)
+                USB_COMM.hid_comm(self.device,target=0x25,nvs_status=0x01,cmd=0x01, applied=0x01)
 
         USB_COMM.hid_comm(self.device, target=0x15, cmd=0x00, applied=0x01)
         time.sleep(6)

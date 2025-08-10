@@ -1361,9 +1361,9 @@ usb-multi-protocol-three-disk-bo</string>
   <zorder>boxmode_button</zorder>
   <zorder>about_button</zorder>
   <zorder>about</zorder>
-  <zorder>overview</zorder>
   <zorder>sataconfig</zorder>
   <zorder>boxmode</zorder>
+  <zorder>overview</zorder>
  </widget>
  <resources>
   <include location="usm.qrc"/>
