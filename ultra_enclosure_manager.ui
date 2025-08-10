@@ -483,7 +483,7 @@ may not support this function!</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>-451</y>
+       <y>0</y>
        <width>297</width>
        <height>800</height>
       </rect>
@@ -1192,6 +1192,24 @@ for better stability and performance.</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reset_execute">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>290</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Reset Controller</string>
     </property>
    </widget>
   </widget>
