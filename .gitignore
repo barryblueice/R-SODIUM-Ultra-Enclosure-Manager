@@ -1,7 +1,6 @@
 *.lnk
 *.workspace
 *.jpg
-*.png
 *.xml
 *test*.py
 test*.py
