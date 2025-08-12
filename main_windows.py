@@ -57,7 +57,7 @@ class MainWindow(QtWidgets.QMainWindow):
         quit_action = tray_menu.addAction("Exit")
 
         show_action.triggered.connect(self.show)
-        quit_action.triggered.connect(QtWidgets.QApplication.quit)
+        quit_action.triggered.connect(self.quitEvent)
 
         self.tray_icon.setContextMenu(tray_menu)
         self.tray_icon.show()
@@ -79,11 +79,13 @@ class MainWindow(QtWidgets.QMainWindow):
         toast.setShowDurationBar(False)
         toast.setDuration(3000)
         toast.show()
-
+        
+    def quitEvent(self, event):
         if self.monitor_thread.isRunning():
             self.monitor_thread.stop()
             self.monitor_thread.wait()
-            event.accept()
+        QtWidgets.QApplication.quit()
+            # event.accept()
 
     def ui_state(self,status: bool):
         self.ui.boxmode.setEnabled(status)
