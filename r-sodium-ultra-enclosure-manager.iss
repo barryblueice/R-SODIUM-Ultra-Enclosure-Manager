@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "R-SODIUM Ultra SSD Enclosure Manager"
-#define MyAppVersion "1.1.2"
+#define MyAppVersion "1.1.2-fix"
 #define MyAppPublisher "R-SODIUM Technology"
 #define MyAppURL "https://github.com/barryblueice/R-SODIUM-Ultra-Enclosure-Manager"
 #define MyAppExeName "R-SODIUM-Ultra-SSD-Enclosure-Manager.exe"
@@ -101,10 +101,7 @@ procedure KillProcess(const FileName: string);
 var
   ResultCode: Integer;
 begin
-  if Exec(ExpandConstant('{cmd}'), '/C taskkill /IM "' + FileName + '" /F', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
-    MsgBox('Detected a running instance of the application. It has been terminated automatically.', mbInformation, MB_OK)
-  else
-    MsgBox('No running instance of the application was found.', mbInformation, MB_OK);
+Exec(ExpandConstant('{cmd}'), '/C taskkill /IM "' + FileName + '" /F', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
 end;
 
 procedure UninstallPreviousVersion();
