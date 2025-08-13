@@ -68,6 +68,10 @@ class MainWindow(QtWidgets.QMainWindow):
         if reason == QSystemTrayIcon.ActivationReason.Trigger:
             self.show()
             self.activateWindow()
+            self.ui.overview.setVisible(True)
+            self.ui.boxmode.setVisible(False)
+            self.ui.sataconfig.setVisible(False)
+            self.ui.about.setVisible(False)
 
     def closeEvent(self, event):
         toast = Toast(self)
