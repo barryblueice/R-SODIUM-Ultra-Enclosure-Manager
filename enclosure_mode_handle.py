@@ -89,21 +89,34 @@ class EnclosureModeHandler(QObject):
                 if "22" in m_not_checked and "23" in m_not_checked:
                     USBCommunicatorThread.hid_comm(device, target=0x21, cmd=0x06, ext_gpio_config=0x00)
 
+                if "11" in m_checked:
+                    USBCommunicatorThread.hid_comm(device, target=0x2D, nvs_status=0x01, cmd=0x01)
+                else:
+                    USBCommunicatorThread.hid_comm(device, target=0x2D, nvs_status=0x01, cmd=0x00)
+
+                if "21" in m_checked:
+                    USBCommunicatorThread.hid_comm(device, target=0x2D, cmd=0x06, ext_gpio_config=0x01)
+                else:
+                    USBCommunicatorThread.hid_comm(device, target=0x2D, cmd=0x06, ext_gpio_config=0x00)
+
             case 1: # ASM2362 ONLY
                 USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x01)
                 USBCommunicatorThread.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x2D, nvs_status=0x01, cmd=0x01)
             case 2: # ASM1352R ONLY
                 USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x01)
                 USBCommunicatorThread.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x01)
                 USBCommunicatorThread.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x01)
+                USBCommunicatorThread.hid_comm(device, target=0x2D, nvs_status=0x01, cmd=0x00)
             case _: # HUB ONLY or other condition
                 USBCommunicatorThread.hid_comm(device, target=0x21, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x22, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x23, nvs_status=0x01, cmd=0x00)
                 USBCommunicatorThread.hid_comm(device, target=0x26, nvs_status=0x01, cmd=0x00)
+                USBCommunicatorThread.hid_comm(device, target=0x2D, nvs_status=0x01, cmd=0x00)
 
         if self.main_window.ui.apply_changes_immediately.isChecked():
 

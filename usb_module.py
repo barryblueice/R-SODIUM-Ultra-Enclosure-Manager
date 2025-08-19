@@ -26,9 +26,6 @@ class USBCommunicatorThread(QThread):
         return hmac.new(HMAC_KEY, data, hashlib.sha256).digest()
 
     def create_packet(target: int, nvs_status: int, cmd: int, exclosure_status = 0x00, ext_gpio_config = 0x00, applied = 0x00) -> bytes:
-
-        # cmd_padded = cmd.ljust(30, b"\x00")
-        # data = bytes([target]) + cmd_padded + bytes([nvs_status])
         last_padded = bytes([applied]).ljust(27, b"\x00")
         data = bytes([target, cmd, nvs_status, exclosure_status, ext_gpio_config]) + last_padded
         mac = USBCommunicatorThread.calc_hmac(data)

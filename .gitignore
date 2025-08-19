@@ -2,6 +2,7 @@
 *.workspace
 *.jpg
 *.xml
+*.bin
 *test*.py
 test*.py
 pyqttoast/
