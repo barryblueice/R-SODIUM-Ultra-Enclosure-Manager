@@ -12,11 +12,11 @@ device = usb_module.USBCommunicatorThread.dev
 
 gpio_mode_id_list = {
     "11": 0x23,
-    "12": 0x26,
-    "13": 0x22,
+    "12": 0x22,
+    "13": 0x26,
     "21": 0x23,
-    "22": 0x26,
-    "23": 0x22,
+    "22": 0x22,
+    "23": 0x26,
 }
 
 import warnings
@@ -162,8 +162,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
                         case 0x22:
 
-                            self.ui.sata2_status.setText(a[i][0])
-                            self.ui.sata2_status.setStyleSheet(f"color: {a[i][1]};")
+                            self.ui.sata1_status.setText(a[i][0])
+                            self.ui.sata1_status.setStyleSheet(f"color: {a[i][1]};")
 
                         case 0x23:
 
@@ -172,8 +172,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
                         case 0x26:
 
-                            self.ui.sata1_status.setText(a[i][0])
-                            self.ui.sata1_status.setStyleSheet(f"color: {a[i][1]};")
+                            self.ui.sata2_status.setText(a[i][0])
+                            self.ui.sata2_status.setStyleSheet(f"color: {a[i][1]};")
 
                         case _:
 

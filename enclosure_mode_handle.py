@@ -8,11 +8,11 @@ import time
 
 gpio_mode_id_list = {
     "11": 0x23,
-    "12": 0x26,
-    "13": 0x22,
+    "12": 0x22,
+    "13": 0x26,
     "21": 0x23,
-    "22": 0x26,
-    "23": 0x22,
+    "22": 0x22,
+    "23": 0x26,
 }
 
 class EnclosureModeHandler(QObject):
@@ -121,6 +121,8 @@ class EnclosureModeHandler(QObject):
         if self.main_window.ui.apply_changes_immediately.isChecked():
 
             USBCommunicatorThread.hid_comm(device, target=0x00, cmd=0xfd)
+
+        MainWindow.overview_status_changed(self.main_window)
 
         self.finished.emit()
 
