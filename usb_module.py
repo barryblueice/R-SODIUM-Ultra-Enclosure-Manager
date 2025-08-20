@@ -2,6 +2,7 @@
 import usb.core
 from PySide6.QtCore import QThread
 from PySide6.QtCore import Signal as pyqtSignal
+from loguru import logger
 import hid
 import hmac
 import hashlib
@@ -55,7 +56,7 @@ class USBCommunicatorThread(QThread):
         try:
             resp = device.read(REPORT_SIZE, timeout_ms=100)
         except Exception as e:
-            return None
+            logger.error(e)
 
         if not resp:
             return None
@@ -115,11 +116,10 @@ class USBCommunicatorThread(QThread):
         else:
             resp = bytes(resp)
             if USBCommunicatorThread.verify_response(resp):
-                # resp_target = resp[0]
                 resp_cmd = resp[1:32].rstrip(b"\x00")
-                # print(f"Received valid response. target: {resp_target:#02x}, cmd: {resp_cmd}")
                 return target,resp_cmd
             else:
+                logger.error("HMAC Mismatch")
                 return None
         
     def verify_rsodium_hid_controller(
