@@ -96,6 +96,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.sataconfig.setEnabled(status)
         self.ui.SATA_Interface_button.setEnabled(status)
         self.ui.boxmode_button.setEnabled(status)
+        self.ui.reset_execute.setEnabled(status)
+        self.ui.dfu_reset_execute.setEnabled(status)
         self.ui_status = status
 
     def on_device_status_changed(self, status: bool):
@@ -263,11 +265,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 target,resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 
                     cmd=0x0B)
-                
-                if resp == b'HIGH':
-                    self.ui.suspend_enable.setChecked(True)
-                else:
-                    self.ui.suspend_enable.setChecked(False)
 
                 target,resp = usb_module.USBCommunicatorThread.hid_comm(
                     device, 

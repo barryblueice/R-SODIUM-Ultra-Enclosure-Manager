@@ -485,13 +485,13 @@ may not support this function!</string>
        <x>0</x>
        <y>0</y>
        <width>297</width>
-       <height>800</height>
+       <height>760</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
        <width>100</width>
-       <height>800</height>
+       <height>760</height>
       </size>
      </property>
      <property name="autoFillBackground">
@@ -501,7 +501,7 @@ may not support this function!</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>740</y>
+        <y>700</y>
         <width>91</width>
         <height>41</height>
        </rect>
@@ -858,7 +858,7 @@ may not support this function!</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>600</y>
+        <y>560</y>
         <width>271</width>
         <height>71</height>
        </rect>
@@ -882,33 +882,11 @@ unsafe shutdowns count.</string>
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QCheckBox" name="suspend_enable">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>520</y>
-        <width>231</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Enable enclosure suspend when
-host is suspended.</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>true</bool>
-      </property>
-     </widget>
      <widget class="QCheckBox" name="unmounted_suspend_enable">
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>560</y>
+        <y>530</y>
         <width>231</width>
         <height>31</height>
        </rect>
@@ -930,7 +908,7 @@ enlosure is unmounted.</string>
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>670</y>
+        <y>630</y>
         <width>211</width>
         <height>41</height>
        </rect>
@@ -1197,7 +1175,7 @@ for better stability and performance.</string>
    <widget class="QPushButton" name="reset_execute">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>160</x>
       <y>290</y>
       <width>121</width>
       <height>41</height>
@@ -1210,6 +1188,24 @@ for better stability and performance.</string>
     </property>
     <property name="text">
      <string>Reset Controller</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="dfu_reset_execute">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>290</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>DFU Update</string>
     </property>
    </widget>
   </widget>
