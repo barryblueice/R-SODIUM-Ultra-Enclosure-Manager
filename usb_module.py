@@ -69,7 +69,8 @@ class USBCommunicatorThread(QThread):
             nvs_status = 0x00, 
             exclosure_status = 0x00,
             ext_gpio_config = 0x00,
-            applied = 0x00
+            applied = 0x00,
+            _list_output = False
             ):
         """HID通信函数
 
@@ -117,7 +118,10 @@ class USBCommunicatorThread(QThread):
             resp = bytes(resp)
             if USBCommunicatorThread.verify_response(resp):
                 resp_cmd = resp[1:32].rstrip(b"\x00")
-                return target,resp_cmd
+                if _list_output:
+                    return target,resp
+                else:
+                    return target,resp_cmd
             else:
                 logger.error("HMAC Mismatch")
                 return None

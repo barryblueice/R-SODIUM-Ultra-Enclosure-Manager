@@ -133,26 +133,32 @@ class MainWindow(QtWidgets.QMainWindow):
 
             try:
 
-                for i in [0x01,0x22,0x23,0x26]:
+                a = {
+                    0x23:[],
+                    0x26:[],
+                    0x22:[],
+                    0x01:[]
+                }
+
+                # NVME | 2.5 SATA | M.2 SATA | Bus Power
+
+                target,resp = usb_module.USBCommunicatorThread.hid_comm(
+                device,
+                cmd=0x0F,
+                _list_output=True)
+
+                n = 1
+
+                for i in a:
+                    if list(resp)[n] == 0:
+                        a[i].append("False")
+                        a[i].append("#FF0000")
+                    else:
+                        a[i].append("True")
+                        a[i].append("#06B025")
+                    n+=1
+
                         
-                    while True:
-                        target,resp = usb_module.USBCommunicatorThread.hid_comm(
-                        device, 
-                        target=i,
-                        cmd=0x03)
-
-                        if target == i:
-
-                            if resp == b'HIGH':
-
-                                a.update({i:["True","#06B025"]})
-
-                            else:
-
-                                a.update({i:["False","#FF0000"]})
-
-                        break
-
                 for i in a.keys():
 
                     match i:
