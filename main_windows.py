@@ -202,6 +202,11 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.ext_power_status.setText("None")
             self.ui.ext_power_status.setStyleSheet("color: #000000;")
 
+            self.ui.overview.setVisible(True)
+            self.ui.boxmode.setVisible(False)
+            self.ui.sataconfig.setVisible(False)
+            self.ui.about.setVisible(False)
+
     def connect_event_handle(self, status: bool):
         try:
 
