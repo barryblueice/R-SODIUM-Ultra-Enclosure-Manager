@@ -147,7 +147,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 cmd=0xFA,
                 _list_output=True)
             resp = resp[:32]
-            self.firmware_update_thread = UpdateChecker(str(resp.decode('ascii', errors='ignore')).rstrip('0'),"firmware")
+            fw_version = ''.join(ch for ch in str(resp.decode('ascii', errors='ignore')).rstrip('0') if ch.isprintable()).strip()
+            self.firmware_update_thread = UpdateChecker(fw_version,"firmware")
             self.firmware_update_thread.update_found.connect(self.updater)
             self.firmware_update_thread.start()
         else:
