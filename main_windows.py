@@ -3,10 +3,17 @@ from PySide6.QtGui import QIcon
 from Ui_ultra_enclosure_manager import Ui_main_interface
 from PySide6.QtWidgets import QSystemTrayIcon, QGroupBox, QMenu
 from pyqttoast import Toast, ToastIcon
+from update_checker import UpdateChecker
+
+from PySide6.QtCore import Slot, QUrl
+from PySide6.QtGui import QDesktopServices
+from PySide6.QtWidgets import QMessageBox
 
 import usb_module
 import groupboxcontroller
 import time
+
+_version = "v1.4"
 
 device = usb_module.USBCommunicatorThread.dev
 
@@ -24,6 +31,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
+
         super().__init__()
         self.ui = Ui_main_interface()
         self.ui.setupUi(self)
@@ -35,6 +43,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.monitor_thread = usb_module.USBCommunicatorThread()
         self.monitor_thread.device_event.connect(self.on_device_status_changed)
         self.monitor_thread.start()
+
+        self.software_update_thread = UpdateChecker(_version,"software")
+        self.software_update_thread.update_found.connect(self.updater)
+        self.software_update_thread.start()
 
         self.groupbox_list = []
         self.groupbox_list.append(self.ui.overview)
@@ -63,6 +75,26 @@ class MainWindow(QtWidgets.QMainWindow):
         self.tray_icon.show()
 
         self.tray_icon.activated.connect(self.on_tray_icon_activated)
+
+    @Slot(str, str)
+    def updater(self, version, url, _update_type):
+        if _update_type == "software":
+            _title = "New GUI Manager Version Found!"
+            _detail = f"New version of GUI Manager is found: {version}\nDo you want to download it? "
+        else:
+            _title = "New Firmware Version Found!"
+            _detail = f"New version of firmware is found: {version}\nDo you want to download it? "
+
+        reply = QMessageBox.question(
+            self,
+            _title,
+            _detail,
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.Yes,
+        )
+        if reply == QMessageBox.Yes:
+            QDesktopServices.openUrl(QUrl(url))
+
 
     def on_tray_icon_activated(self, reason):
         if reason == QSystemTrayIcon.ActivationReason.Trigger:
@@ -110,6 +142,14 @@ class MainWindow(QtWidgets.QMainWindow):
             if self.global_status != status:
                 toast.setText('A new Ultra SSD Enclosure device has detected!')
                 toast.setIcon(ToastIcon.SUCCESS)
+            target,resp = usb_module.USBCommunicatorThread.hid_comm(
+                device,
+                cmd=0xFA,
+                _list_output=True)
+            resp = resp[:32]
+            self.firmware_update_thread = UpdateChecker(str(resp.decode('ascii', errors='ignore')).rstrip('0'),"firmware")
+            self.firmware_update_thread.update_found.connect(self.updater)
+            self.firmware_update_thread.start()
         else:
             toast.setText('The Ultra SSD Enclosure device has been removed!')
             toast.setIcon(ToastIcon.INFORMATION)

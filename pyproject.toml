@@ -20,6 +20,7 @@ cython = "^3.1.2"
 pyside6 = "^6.9.1"
 psutil = "^7.0.0"
 loguru = "^0.7.0"
+requests = "^2.32.5"
 
 
 [[tool.poetry.source]]
