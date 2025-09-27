@@ -211,8 +211,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
                         case 0x22:
 
-                            self.ui.sata1_status.setText(a[i][0])
-                            self.ui.sata1_status.setStyleSheet(f"color: {a[i][1]};")
+                            self.ui.sata2_status.setText(a[i][0])
+                            self.ui.sata2_status.setStyleSheet(f"color: {a[i][1]};")
 
                         case 0x23:
 
@@ -221,8 +221,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
                         case 0x26:
 
-                            self.ui.sata2_status.setText(a[i][0])
-                            self.ui.sata2_status.setStyleSheet(f"color: {a[i][1]};")
+                            self.ui.sata1_status.setText(a[i][0])
+                            self.ui.sata1_status.setStyleSheet(f"color: {a[i][1]};")
 
                         case _:
 
