@@ -13,7 +13,7 @@ import usb_module
 import groupboxcontroller
 import time
 
-_version = "v1.4-fix"
+_version = "v1.4.1"
 
 device = usb_module.USBCommunicatorThread.dev
 

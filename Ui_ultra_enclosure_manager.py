@@ -165,12 +165,12 @@ class Ui_main_interface(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 297, 760))
-        self.scrollAreaWidgetContents.setMinimumSize(QSize(100, 760))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -501, 297, 850))
+        self.scrollAreaWidgetContents.setMinimumSize(QSize(100, 850))
         self.scrollAreaWidgetContents.setAutoFillBackground(True)
         self.boxmode_execute = QPushButton(self.scrollAreaWidgetContents)
         self.boxmode_execute.setObjectName(u"boxmode_execute")
-        self.boxmode_execute.setGeometry(QRect(200, 700, 91, 41))
+        self.boxmode_execute.setGeometry(QRect(200, 790, 91, 41))
         self.label_5 = QLabel(self.scrollAreaWidgetContents)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(70, 20, 171, 31))
@@ -260,7 +260,7 @@ class Ui_main_interface(object):
         self.label_25.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_28 = QLabel(self.scrollAreaWidgetContents)
         self.label_28.setObjectName(u"label_28")
-        self.label_28.setGeometry(QRect(20, 560, 271, 71))
+        self.label_28.setGeometry(QRect(20, 620, 271, 101))
         self.label_28.setFont(font5)
         self.label_28.setStyleSheet(u"color: rgb(255, 0, 0);")
         self.label_28.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -271,10 +271,16 @@ class Ui_main_interface(object):
         self.unmounted_suspend_enable.setAutoExclusive(True)
         self.apply_changes_immediately = QCheckBox(self.scrollAreaWidgetContents)
         self.apply_changes_immediately.setObjectName(u"apply_changes_immediately")
-        self.apply_changes_immediately.setGeometry(QRect(50, 630, 211, 41))
+        self.apply_changes_immediately.setGeometry(QRect(50, 730, 211, 41))
         self.apply_changes_immediately.setFont(font1)
         self.apply_changes_immediately.setChecked(False)
         self.apply_changes_immediately.setAutoExclusive(True)
+        self.reset_ext = QCheckBox(self.scrollAreaWidgetContents)
+        self.reset_ext.setObjectName(u"reset_ext")
+        self.reset_ext.setGeometry(QRect(40, 570, 211, 41))
+        self.reset_ext.setFont(font1)
+        self.reset_ext.setChecked(False)
+        self.reset_ext.setAutoExclusive(True)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.overview = QGroupBox(main_interface)
         self.overview.setObjectName(u"overview")
@@ -393,8 +399,8 @@ class Ui_main_interface(object):
         self.about_button.raise_()
         self.about.raise_()
         self.sataconfig.raise_()
-        self.boxmode.raise_()
         self.overview.raise_()
+        self.boxmode.raise_()
 
         self.retranslateUi(main_interface)
 
@@ -443,13 +449,17 @@ class Ui_main_interface(object):
         self.sataonly.setText(QCoreApplication.translate("main_interface", u"ASM1352R Only", None))
         self.label_14.setText("")
         self.label_25.setText(QCoreApplication.translate("main_interface", u"Other Configuration", None))
-        self.label_28.setText(QCoreApplication.translate("main_interface", u"Warning: Enabling auto suspend\n"
-"may increase the drive's\n"
-"unsafe shutdowns count.", None))
+        self.label_28.setText(QCoreApplication.translate("main_interface", u"Warning:\n"
+"Enabling auto suspend\n"
+"and auto controller reset\n"
+"may increase the drive\u2019s\n"
+"unsafe shutdown count.", None))
         self.unmounted_suspend_enable.setText(QCoreApplication.translate("main_interface", u"Enable enclosure suspend when\n"
 "enlosure is unmounted.", None))
         self.apply_changes_immediately.setText(QCoreApplication.translate("main_interface", u"Apply power-up changes\n"
 "immediately after executed.", None))
+        self.reset_ext.setText(QCoreApplication.translate("main_interface", u"Reset controller when\n"
+"external power is plugged in.", None))
         self.overview.setStyleSheet("")
         self.overview.setTitle("")
         self.label_7.setText(QCoreApplication.translate("main_interface", u"Overview", None))

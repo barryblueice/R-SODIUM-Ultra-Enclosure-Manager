@@ -483,15 +483,15 @@ may not support this function!</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-501</y>
        <width>297</width>
-       <height>760</height>
+       <height>850</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
        <width>100</width>
-       <height>760</height>
+       <height>850</height>
       </size>
      </property>
      <property name="autoFillBackground">
@@ -501,7 +501,7 @@ may not support this function!</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>700</y>
+        <y>790</y>
         <width>91</width>
         <height>41</height>
        </rect>
@@ -858,9 +858,9 @@ may not support this function!</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>560</y>
+        <y>620</y>
         <width>271</width>
-        <height>71</height>
+        <height>101</height>
        </rect>
       </property>
       <property name="font">
@@ -874,9 +874,11 @@ may not support this function!</string>
        <string notr="true">color: rgb(255, 0, 0);</string>
       </property>
       <property name="text">
-       <string>Warning: Enabling auto suspend
-may increase the drive's
-unsafe shutdowns count.</string>
+       <string>Warning:
+Enabling auto suspend
+and auto controller reset
+may increase the drive’s
+unsafe shutdown count.</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -908,7 +910,7 @@ enlosure is unmounted.</string>
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>630</y>
+        <y>730</y>
         <width>211</width>
         <height>41</height>
        </rect>
@@ -921,6 +923,31 @@ enlosure is unmounted.</string>
       <property name="text">
        <string>Apply power-up changes
 immediately after executed.</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="reset_ext">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>570</y>
+        <width>211</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Reset controller when
+external power is plugged in.</string>
       </property>
       <property name="checked">
        <bool>false</bool>
@@ -1376,8 +1403,8 @@ usb-multi-protocol-three-disk-bo</string>
   <zorder>about_button</zorder>
   <zorder>about</zorder>
   <zorder>sataconfig</zorder>
-  <zorder>boxmode</zorder>
   <zorder>overview</zorder>
+  <zorder>boxmode</zorder>
  </widget>
  <resources>
   <include location="usm.qrc"/>

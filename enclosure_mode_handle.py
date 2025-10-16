@@ -117,6 +117,14 @@ class EnclosureModeHandler(QObject):
 
             USBCommunicatorThread.hid_comm(device, target=0x00, cmd=0xfd)
 
+        if self.main_window.ui.reset_ext.isChecked():
+
+            USBCommunicatorThread.hid_comm(device, target=0x01, cmd=0x10)
+
+        else:
+
+            USBCommunicatorThread.hid_comm(device, target=0x00, cmd=0x10)
+
         MainWindow.overview_status_changed(self.main_window)
 
         self.finished.emit()
