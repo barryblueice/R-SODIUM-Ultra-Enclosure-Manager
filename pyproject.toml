@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Ultra-ssd-enclosure-manager"
-version = "0.1.0"
+version = "1.4.2"
 description = "GUI Manager for R-SODIUM Ultra SSD Enclosure"
 authors = ["Barryblueice <barryblueice@outlook.com>"]
 license = "MPL-2.0"

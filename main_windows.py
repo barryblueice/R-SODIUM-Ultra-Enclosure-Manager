@@ -13,7 +13,7 @@ import usb_module
 import groupboxcontroller
 import time
 
-_version = "v1.4.1"
+_version = "v1.4.2"
 
 device = usb_module.USBCommunicatorThread.dev
 
@@ -169,84 +169,86 @@ class MainWindow(QtWidgets.QMainWindow):
     def overview_status_changed(self):
 
         a = {}
+
+        if self.ui.overview.isVisible():
             
-        if self.ui_status:
+            if self.ui_status:
 
-            try:
+                try:
 
-                a = {
-                    0x23:[],
-                    0x26:[],
-                    0x22:[],
-                    0x01:[]
-                }
+                    a = {
+                        0x23:[],
+                        0x26:[],
+                        0x22:[],
+                        0x01:[]
+                    }
 
-                # NVME | 2.5 SATA | M.2 SATA | Bus Power
+                    # NVME | 2.5 SATA | M.2 SATA | Bus Power
 
-                target,resp = usb_module.USBCommunicatorThread.hid_comm(
-                device,
-                cmd=0x0F,
-                _list_output=True)
+                    target,resp = usb_module.USBCommunicatorThread.hid_comm(
+                    device,
+                    cmd=0x0F,
+                    _list_output=True)
 
-                n = 1
+                    n = 1
 
-                for i in a:
-                    if list(resp)[n] == 0:
-                        a[i].append("False")
-                        a[i].append("#FF0000")
-                    else:
-                        a[i].append("True")
-                        a[i].append("#06B025")
-                    n+=1
+                    for i in a:
+                        if list(resp)[n] == 0:
+                            a[i].append("False")
+                            a[i].append("#FF0000")
+                        else:
+                            a[i].append("True")
+                            a[i].append("#06B025")
+                        n+=1
 
-                        
-                for i in a.keys():
+                            
+                    for i in a.keys():
 
-                    match i:
+                        match i:
 
-                        case 0x01:
+                            case 0x01:
 
-                            self.ui.ext_power_status.setText(a[i][0])
-                            self.ui.ext_power_status.setStyleSheet(f"color: {a[i][1]};")
+                                self.ui.ext_power_status.setText(a[i][0])
+                                self.ui.ext_power_status.setStyleSheet(f"color: {a[i][1]};")
 
-                        case 0x22:
+                            case 0x22:
 
-                            self.ui.sata2_status.setText(a[i][0])
-                            self.ui.sata2_status.setStyleSheet(f"color: {a[i][1]};")
+                                self.ui.sata2_status.setText(a[i][0])
+                                self.ui.sata2_status.setStyleSheet(f"color: {a[i][1]};")
 
-                        case 0x23:
+                            case 0x23:
 
-                            self.ui.nvme_status.setText(a[i][0])
-                            self.ui.nvme_status.setStyleSheet(f"color: {a[i][1]};")
+                                self.ui.nvme_status.setText(a[i][0])
+                                self.ui.nvme_status.setStyleSheet(f"color: {a[i][1]};")
 
-                        case 0x26:
+                            case 0x26:
 
-                            self.ui.sata1_status.setText(a[i][0])
-                            self.ui.sata1_status.setStyleSheet(f"color: {a[i][1]};")
+                                self.ui.sata1_status.setText(a[i][0])
+                                self.ui.sata1_status.setStyleSheet(f"color: {a[i][1]};")
 
-                        case _:
+                            case _:
 
-                            pass
+                                pass
 
-            except:
+                except:
 
-                pass
+                    pass
 
-        else:
+            else:
 
-            self.ui.nvme_status.setText("None")
-            self.ui.nvme_status.setStyleSheet("color: #000000;")
-            self.ui.sata1_status.setText("None")
-            self.ui.sata1_status.setStyleSheet("color: #000000;")
-            self.ui.sata2_status.setText("None")
-            self.ui.sata2_status.setStyleSheet("color: #000000;")
-            self.ui.ext_power_status.setText("None")
-            self.ui.ext_power_status.setStyleSheet("color: #000000;")
+                self.ui.nvme_status.setText("None")
+                self.ui.nvme_status.setStyleSheet("color: #000000;")
+                self.ui.sata1_status.setText("None")
+                self.ui.sata1_status.setStyleSheet("color: #000000;")
+                self.ui.sata2_status.setText("None")
+                self.ui.sata2_status.setStyleSheet("color: #000000;")
+                self.ui.ext_power_status.setText("None")
+                self.ui.ext_power_status.setStyleSheet("color: #000000;")
 
-            self.ui.overview.setVisible(True)
-            self.ui.boxmode.setVisible(False)
-            self.ui.sataconfig.setVisible(False)
-            self.ui.about.setVisible(False)
+                self.ui.overview.setVisible(True)
+                self.ui.boxmode.setVisible(False)
+                self.ui.sataconfig.setVisible(False)
+                self.ui.about.setVisible(False)
 
     def connect_event_handle(self, status: bool):
         try:
